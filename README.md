@@ -1,3 +1,3 @@
 # MHantsbarger.github.io
 
-Hey look a website.
+Website for Visualization Technologies Class
