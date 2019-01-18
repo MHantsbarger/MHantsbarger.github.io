@@ -1,0 +1,18 @@
+/* style sheet for jan17_html_test2.html */
+h3 {
+    color:red;
+    font-size: 32px;
+    margin:0;
+}
+h3#blueHeader { /* id; should only be used for singular elements */
+    color: blue;
+    font-size: 32px;
+    margin:0;
+}
+h3.italic-title { /* classes can be used for multiple h3 elements */
+    font-style: italic;
+}
+.purple-italic { /* class for any element */
+    color:purple;
+    font-style: italic;
+}
