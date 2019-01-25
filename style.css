@@ -1,0 +1,22 @@
+/* style sheet for index.html */
+h1 { /* title*/
+    font-size: 25px;
+    margin:10;
+    text-align:center;
+}
+h2 { /*main headings*/
+    font-size: 20px;
+    text-decoration: underline;
+}
+h3 { /*date headings tabbed in*/
+    font-size: 18px;
+    margin-left: 10px;
+}
+h4 { /*subtitle*/
+    font-size: 12px;
+    margin:50;
+    text-align:center;
+}
+.tabbed_in { /* tabs twice*/
+    margin-left:30px;
+}
