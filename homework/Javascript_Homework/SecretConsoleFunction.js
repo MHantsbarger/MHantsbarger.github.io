@@ -4,6 +4,7 @@ var link = function() {
         audio.volume = 0.5; 
         audio.play();
         document.getElementById("ImageBackground").src = "javascript_bg_2.png";
+        document.getElementById("ImageBackground").alt="Image of a world from the video game Myst."
         console.log("Linked to Myst Island.");
     }
     else if ( document.getElementById("ImageBackground").src.match("javascript_bg_2.png") ) {
