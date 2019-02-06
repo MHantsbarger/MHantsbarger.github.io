@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>D3 homework</title>
+        <script src="https://d3js.org/d3.v4.min.js"></script> <!-- D3 helper library -->
+    </head>
+    <body>
+        <a href="/index.html">Return to index</a><br/>
+        <h1 id="title">Drawing squares using D3</h1>
+        <!-- <input type="button" value="1 square" onclick="drawSquares(40,oneSqColors);" />
+        <input type="button" value="3 squares" onclick="drawSquares(80,threeSqColors);" />
+        <input type="button" value="6 squares" onclick="drawSquares(60,sixSqColors);" /><br/> -->
+        <button onclick="drawSquares(40,oneSqColors);">1 square</button> 
+        <button onclick="drawSquares(80,threeSqColors)">3 squares</button> 
+        <button onclick="drawSquares(60,sixSqColors);">6 squares</button> 
+        <svg width="600px" height="200px"> <!--svg shape we will modify with d3-->
+            <rect class="square" x="5px" y="5px" width="40px" height="40px" fill="black"/>
+        </svg>
+        <script src="d3hw.js"></script>
+    </body>
+</html>
