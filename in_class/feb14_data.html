@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Scales, Tooltips, Axes, oh my!</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+        }
+        #tooltip {
+            border: 1px solid black;
+            display: none;
+            position: absolute;
+        }
+        h1 {
+            margin: 0;
+        }
+    </style>
+  </head>
+  <body>
+    <svg width="100%">
+        <g id="xAxis" transform="translate(0, 100)"></g>
+    </svg>
+    <div id="tooltip"></div>
+    <script src="feb14_data.js"></script>
+  </body>
+</html>
