@@ -1,3 +1,5 @@
+// data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
+
 d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) {
     console.log("csv data error:", error);
     console.log("csv contents:", data);

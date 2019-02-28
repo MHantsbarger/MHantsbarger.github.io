@@ -1,0 +1,38 @@
+/* style sheet for index.html */
+h1 { /* title*/
+    font-size: 25px;
+    margin:0;
+    text-align:center;
+}
+h2 { /*subtitle*/
+    font-size: 16px;
+    margin:0;
+    text-align:center;
+}
+.barGraph {
+    position: absolute;
+    font-size: 12px;
+    margin:0;
+    top:350px;
+    left:50%;
+}
+.sideBar {
+    position: absolute;
+    font-size: 12px;
+    margin:0;
+    top:140px;
+    left:3%;
+}
+.lowerSecDesc{
+    position: absolute;
+    font-size: 12px;
+    margin:0;
+    top:630px;
+    left:2%;
+}
+svg {
+    position:absolute;
+    top:0px;
+    left:0px;
+    z-index: -1;
+}
