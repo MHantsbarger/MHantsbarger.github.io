@@ -1,4 +1,6 @@
-country,export
-USA,100
-Mexico,200
-Canada,10
+year,country,export
+2018,us,1000
+2017,us,87
+2018,mx,2300
+2017,mx,2532
+2018,ca,10

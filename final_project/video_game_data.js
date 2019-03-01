@@ -1,5 +1,4 @@
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
-
 d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load and handle data
     console.log("csv data error:", error);
     console.log("csv contents:", data);
@@ -22,3 +21,7 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
     );
 
 });
+
+var svg = d3.select("svg");
+var bgRect = svg.selectAll("#bgRect")
+// x="5px" y="100px" width="98%" height="500px" fill="white" stroke-width="1" stroke="black"
