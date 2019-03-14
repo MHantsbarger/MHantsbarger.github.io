@@ -21,24 +21,23 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
     );
     
     var xScale = d3.scaleLinear()
-    .domain([1,11])
+    .domain([1,51])
     .range([350, .97*window.innerWidth]);
 
     var yScale = d3.scaleLinear()
         .domain([0, 90000000])
-        .range([120, 460]);
+        .range([560, 120]);
 
 
     var svg = d3.select("svg");
-    // var bgRect = svg.selectAll("#bgRect")
-    // x="5px" y="100px" width="98%" height="500px" fill="white" stroke-width="1" stroke="black"
-    var topTen = data.filter(function(d){
-        return d.rank <= 10;
+
+    var topFifty = data.filter(function(d){
+        return d.rank <= 50;
     });
-    console.log(topTen);
+    console.log(topFifty);
 
     var barGrBars = svg.selectAll("barRect")
-        .data(topTen);
+        .data(topFifty);
 
     barGrBars.enter().append("rect")
         .attr("id", "barRect")
@@ -46,27 +45,25 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             return xScale(d.rank);
         })
         .attr("y", function(d) {
-            // return yScale(d.salesTotal);
-            return 120;
+            return yScale(d.salesTotal);
         })
         .attr("width", function(d) {
-            return ((window.innerWidth-270)/10)-35;
-            // return 20;
+            return ((window.innerWidth-270)/50)-3;
         })
         .attr("height", function(d) {
-            return (yScale(d.salesTotal));
+            return 560-(yScale(d.salesTotal));
         })
         .attr("fill", function(d) {
             if (d.rank%2 == 0) {
-                return "black";
+                return "lightgray";
             }
             else {
                 return "grey";
             }
         });
     
-    d3.selectAll("barRect")
-    .data(topTen)
+    d3.selectAll("#barRect")
+    .data(topFifty)
         .on("click", function(d) {
             console.log(d.name);
         })
@@ -74,14 +71,15 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             var mouse = d3.mouse(this);
             d3.select("#tooltip")
                 .style("display", "block")
-                .html("<h1>" + d.name + "</h1>")
-                .style("left", mouse[0] + "px")
+                .html("<h3>" + d.name + "</h3>")
+                .style("left", mouse[0] + 50 + "px")
                 .style("top", mouse[1] - 50 + "px");
         })
         .on("mouseout", function(d) {
             d3.select("#tooltip")
                 .style("display", "none")
         });
+
     var axis = d3.axisLeft(yScale);
     d3.select("#yAxis").call(axis);
 });

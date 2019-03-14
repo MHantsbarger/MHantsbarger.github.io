@@ -14,6 +14,16 @@ h2 { /*subtitle*/
     margin:0;
     text-align:center;
 }
+#tooltip {
+    border: 1px solid black;
+    background-color: white;
+    display: none;
+    position: absolute;
+}
+
+
+
+/* placeholder text */
 .barGraph { /*text for bar graph*/
     font-family: Verdana, sans-serif;
     position: absolute;
