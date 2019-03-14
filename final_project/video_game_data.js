@@ -65,22 +65,23 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             }
         });
     
-    // d3.selectAll("barRect")
-    //     .on("click", function(d) {
-    //         console.log(d.name);
-    //     })
-    //     .on("mousemove", function(d) {
-    //         var mouse = d3.mouse(this);
-    //         d3.select("#tooltip")
-    //             .style("display", "block")
-    //             .html("<h1>" + d.name + "</h1>")
-    //             .style("left", mouse[0] + "px")
-    //             .style("top", mouse[1] - 50 + "px");
-    //     })
-    //     .on("mouseout", function(d) {
-    //         d3.select("#tooltip")
-    //             .style("display", "none")
-    //     });
+    d3.selectAll("barRect")
+    .data(topTen)
+        .on("click", function(d) {
+            console.log(d.name);
+        })
+        .on("mousemove", function(d) {
+            var mouse = d3.mouse(this);
+            d3.select("#tooltip")
+                .style("display", "block")
+                .html("<h1>" + d.name + "</h1>")
+                .style("left", mouse[0] + "px")
+                .style("top", mouse[1] - 50 + "px");
+        })
+        .on("mouseout", function(d) {
+            d3.select("#tooltip")
+                .style("display", "none")
+        });
     var axis = d3.axisLeft(yScale);
     d3.select("#yAxis").call(axis);
 });
