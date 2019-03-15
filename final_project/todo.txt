@@ -1,5 +1,7 @@
 To do for next week:
 1. Get stacked color coded bars for top 50 games, by region sold.
     stacked bars (https://github.com/d3/d3-shape/blob/master/README.md#stacks)
+    Currently: have stacked array of $ values.
+    Next: transform all into shapes based on pixels and x & yScales.
 2. Convert sales numbers into a human readable format.
     d3-format (https://github.com/d3/d3-format)

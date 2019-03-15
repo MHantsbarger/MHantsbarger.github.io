@@ -3,7 +3,7 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
     console.log("csv data error:", error);
     console.log("csv contents:", data);
 
-    //parse data into variables
+    // parse data into variables
     data.forEach( 
         function(d){ 
             d.rank = parseInt(d.Rank); // Sales rank
@@ -19,25 +19,24 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             // console.log(d);
         }
     );
+
+    var graphScales;
+    // set up scale for top 50 games
+    graphScales = setScale(
+        [1,51], [350, .97*window.innerWidth],
+        [0, 90000000], [560, 120]);
+    var xScale = graphScales[0];
+    var yScale = graphScales[1];
     
-    var xScale = d3.scaleLinear()
-    .domain([1,51])
-    .range([350, .97*window.innerWidth]);
-
-    var yScale = d3.scaleLinear()
-        .domain([0, 90000000])
-        .range([560, 120]);
-
-
     var svg = d3.select("svg");
 
-    var topFifty = data.filter(function(d){
-        return d.rank <= 50;
-    });
-    console.log(topFifty);
+    // load in top 50 games
+    var filteredData = filterRank(data,1,50);
+    //console.log(filteredData);
+
 
     var barGrBars = svg.selectAll("barRect")
-        .data(topFifty);
+        .data(filteredData);
 
     barGrBars.enter().append("rect")
         .attr("id", "barRect")
@@ -54,16 +53,49 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             return 560-(yScale(d.salesTotal));
         })
         .attr("fill", function(d) {
-            if (d.rank%2 == 0) {
-                return "lightgray";
-            }
-            else {
-                return "grey";
-            }
+            // return "grey";
+            // if (d.rank%2 == 0) {
+            //     return "lightgray";
+            // }
+            // else {
+            //     return "grey";
+            // }
         });
     
+    var series = createStackedGraph(filteredData);
+    console.log (series);
+
+    mouseOverTooltips(filteredData);
+
+    var axis = d3.axisLeft(yScale);
+    d3.select("#yAxis").call(axis);
+});
+
+
+// function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
+function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
+    var xScale = d3.scaleLinear()
+        .domain([dXmin, dXmax])
+        .range([rXmin, rXmax]);
+
+    var yScale = d3.scaleLinear()
+        .domain([dYmin, dYmax])
+        .range([rYmin, rYmax]);
+    return [xScale, yScale];
+}
+
+// function that filters data based on min and max rank, inclusive.
+function filterRank(data, rankMin, rankMax) {
+    var rankRange = data.filter(function(d){
+        return d.rank <= rankMax && d.rank >= rankMin;
+    });
+    return rankRange;
+}
+
+// function that handles mouseover events to display tooltips.
+function mouseOverTooltips(data) {
     d3.selectAll("#barRect")
-    .data(topFifty)
+        .data(data)
         .on("click", function(d) {
             console.log(d.name);
         })
@@ -79,9 +111,15 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             d3.select("#tooltip")
                 .style("display", "none")
         });
+}
 
-    var axis = d3.axisLeft(yScale);
-    d3.select("#yAxis").call(axis);
-});
-
-
+// function that creates a stacked data based on sales per region (NA, JPN, and Other)
+function createStackedGraph(data) {
+    var stack = d3.stack(data)
+        .keys(["salesJPN", "salesNA", "salesOther"])
+        .order(d3.stackOrderNone)
+        .offset(d3.stackOffsetNone);
+    
+    var series = stack(data);
+    return series;
+}
