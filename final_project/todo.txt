@@ -1,7 +1,12 @@
 To do for next week:
 1. Get stacked color coded bars for top 50 games, by region sold.
     stacked bars (https://github.com/d3/d3-shape/blob/master/README.md#stacks)
-    Currently: have stacked array of $ values.
-    Next: transform all into shapes based on pixels and x & yScales.
+    DONE: data stacked into four stacked bars for each region (NA,EU,JPN,Other)
 2. Convert sales numbers into a human readable format.
     d3-format (https://github.com/d3/d3-format)
+    DONE: used d3.format to convert into millions
+        (kinda cheats using scientific notation: Mega abbrevation coincides with millions abrv)
+3. Adjust height and width of elements to be scalable.
+    COMPLETED: initial adjustment of frame and sidebar height and width based on user's screen.
+    IN PROGRESS: need to update graph position and scaling.
+4. Reach Goal: Start adding filters buttons and hookup.
