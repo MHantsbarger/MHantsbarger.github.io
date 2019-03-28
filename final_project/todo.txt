@@ -1,7 +1,9 @@
 To do for next week:
 1. DONE: Add tooltips for all bars in the graph.
-2. Add filter buttons and begin hooking up year.
-3. Fonts and backgrounds.
+2. IN PROGRESS: Add filter buttons and begin hooking up year.
+3. DONE (always more to do): Fonts and backgrounds.
+
+
 4. MINOR: Format width/height/positioning in CSS and pass to js for graph scaling.
 
 
