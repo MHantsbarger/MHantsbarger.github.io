@@ -34,6 +34,18 @@
             -Genre<br/>
             -Region(NA,EU,JPN,or other)<br/>
             -Rank range</p> -->
+        <p class=sideBar>
+            <select id ="regionDropdown">
+                <option value="AllRegions">All Regions</option>
+                <option value="Japan">Japan</option>
+                <option value="NorthAmerica">North America</option>
+                <option value="Europe">Europe</option>
+                <option value="Other">Everywhere Else</option>
+            </select><br>
+            Min rank: <input type="number" name="MinRank" value="rankmin"><br>
+            Max rank: <input type="number" name="MaxRank" value="rankmax"><br>
+            <button type="button" onclick="filterRank(data, rankmin, rankmax)">Show Data</button><br>
+        </p>
         <!-- <p class=lowerSecDesc>Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
             For each game show relevant data and visualization for sales.<br/>
             For each developer show list of games, their rank, and sales.<br/>
