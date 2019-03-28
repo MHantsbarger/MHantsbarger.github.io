@@ -20,52 +20,22 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             // console.log(d);
         }
     );
-    var svg = d3.select("svg");
-
-    var graphDimensions = updateFrameDimensions();
-    console.log(graphDimensions);
-
-    var graphScales;
-    // set up scale for top 50 games
-    graphScales = setScale(
-        [1,51], [350, .97*window.innerWidth],
-        [0, 90000000], [560, 120]);
-    var xScale = graphScales[0];
-    var yScale = graphScales[1];
-    
     
 
     // load in top 50 games
     var filteredData = filterRank(data,1,50);
     //console.log(filteredData);
 
-
-    // var barGrBars = svg.selectAll("barRect")
-    //     .data(filteredData);
-
-    // barGrBars.enter().append("rect")
-    //     .attr("id", "barRect")
-    //     .attr("x", function(d) {
-    //         return xScale(d.rank);
-    //     })
-    //     .attr("y", function(d) {
-    //         return yScale(d.salesTotal);
-    //     })
-    //     .attr("width", function(d) {
-    //         return ((window.innerWidth-270)/50)-3;
-    //     })
-    //     .attr("height", function(d) {
-    //         return 560-(yScale(d.salesTotal));
-    //     })
-    //     .attr("fill", function(d) {
-    //         // return "grey";
-    //         // if (d.rank%2 == 0) {
-    //         //     return "lightgray";
-    //         // }
-    //         // else {
-    //         //     return "grey";
-    //         // }
-    //     });
+    var graphDimensions = updateFrameDimensions();
+    // console.log(graphDimensions);
+    
+    var graphScales;
+    // set up scale for top 50 games
+    graphScales = setScale(
+        [1,51], [350, 350 + graphDimensions.graphZoneWidth],
+        [0, 90000000], [graphDimensions.graphZoneHeight + 140, 140]);
+    var xScale = graphScales[0];
+    var yScale = graphScales[1];
     
     var series = createStackedGraph(filteredData);
     // console.log (series);
@@ -80,102 +50,24 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
     );
     // console.log(filteredData);
 
-    var barGrBars = svg.selectAll("barRect")
-    .data(filteredData);
-
-    // JPN data
-    barGrBars.enter().append("rect")
-        .attr("id", "barRect")
-        .attr("x", function(d) {
-            return xScale(d.rank);
-        })
-        .attr("y", function(d) {
-            // console.log(d.JPNrect[1]);
-            return yScale(d.JPNrect[1]);
-        })
-        .attr("width", function(d) {
-            return ((window.innerWidth-270)/50)-3;
-        })
-        .attr("height", function(d) {
-            // console.log(d.JPNrect[1]-d.JPNrect[0]);
-            return 560-(yScale(d.JPNrect[1]-d.JPNrect[0]));
-        })
-        .attr("fill", function(d) {
-            return "red";
-        });
-
-    // NA data
-    barGrBars.enter().append("rect")
-        .attr("id", "barRect")
-        .attr("x", function(d) {
-            return xScale(d.rank);
-        })
-        .attr("y", function(d) {
-            // console.log(d.NArect[1]);
-            return yScale(d.NArect[1]);
-        })
-        .attr("width", function(d) {
-            return ((window.innerWidth-270)/50)-3;
-        })
-        .attr("height", function(d) {
-            // console.log(d.NArect[1]-d.NArect[0]);
-            return 560-(yScale(d.NArect[1]-d.NArect[0]));
-        })
-        .attr("fill", function(d) {
-            return "blue";
-        });
-
-    // EU data
-    barGrBars.enter().append("rect")
-        .attr("id", "barRect")
-        .attr("x", function(d) {
-            return xScale(d.rank);
-        })
-        .attr("y", function(d) {
-            // console.log(d.EUrect[1]);
-            return yScale(d.EUrect[1]);
-        })
-        .attr("width", function(d) {
-            return ((window.innerWidth-270)/50)-3;
-        })
-        .attr("height", function(d) {
-            // console.log(d.EUrect[1]-d.EUrect[0]);
-            return 560-(yScale(d.EUrect[1]-d.EUrect[0]));
-        })
-        .attr("fill", function(d) {
-            return "orange";
-        });
-    
-    // Other data
-    barGrBars.enter().append("rect")
-        .attr("id", "barRect")
-        .attr("x", function(d) {
-            return xScale(d.rank);
-        })
-        .attr("y", function(d) {
-            // console.log(d.Otherrect[1]);
-            return yScale(d.Otherrect[1]);
-        })
-        .attr("width", function(d) {
-            return ((window.innerWidth-270)/50)-3;
-        })
-        .attr("height", function(d) {
-            // console.log(d.Otherrect[1]-d.Otherrect[0]);
-            return 560-(yScale(d.Otherrect[1]-d.Otherrect[0]));
-        })
-        .attr("fill", function(d) {
-            return "green";
-        });
-
     // var barGrBars = svg.selectAll("barRect")
-        // .data(filteredData);
-    // why does tooltip only show for JPN games?
-    mouseOverTooltips(filteredData);
+    // .data(filteredData);
 
+    var svg = d3.select("svg");
+
+    var JPNbarGraph = drawRegionBars("JPN", filteredData, graphDimensions, xScale, yScale);
+
+    var NAbarGraph = drawRegionBars("NA", filteredData, graphDimensions, xScale, yScale);
+
+    var EUbarGraph = drawRegionBars("EU", filteredData, graphDimensions, xScale, yScale);
+
+    var OtherbarGraph = drawRegionBars("Other", filteredData, graphDimensions, xScale, yScale);
+    
     var axis = d3.axisLeft(yScale);
+    axis.tickFormat(d3.format("(.2s"));
     d3.select("#yAxis").call(axis);
-});
 
+});
 
 // function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
 function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
@@ -187,46 +79,6 @@ function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]
         .domain([dYmin, dYmax])
         .range([rYmin, rYmax]);
     return [xScale, yScale];
-}
-
-// function that filters data based on min and max rank, inclusive.
-function filterRank(data, rankMin, rankMax) {
-    var rankRange = data.filter(function(d){
-        return d.rank <= rankMax && d.rank >= rankMin;
-    });
-    return rankRange;
-}
-
-// function that handles mouseover events to display tooltips.
-function mouseOverTooltips(data) {
-    d3.selectAll("#barRect")
-        .data(data)
-        .on("click", function(d) {
-            console.log(d.name);
-        })
-        .on("mousemove", function(d) {
-            var mouse = d3.mouse(this);
-            d3.select("#tooltip")
-                .style("display", "block")
-                .html("<h3>" + d.name + "<br/>" + d3.format("($.3s")(d.salesJPN)+ "</h3>") //only JPN sales until i figure out how to get tooltips for other bars
-                .style("left", mouse[0] - 200 + "px")
-                .style("top", mouse[1] - 90 + "px");
-        })
-        .on("mouseout", function(d) {
-            d3.select("#tooltip")
-                .style("display", "none")
-        });
-}
-
-// function that creates a stacked data based on sales per region (NA, JPN, and Other)
-function createStackedGraph(data) {
-    var stack = d3.stack(data)
-        .keys(["salesJPN", "salesNA", "salesEU", "salesOther"])
-        .order(d3.stackOrderNone)
-        .offset(d3.stackOffsetNone);
-    
-    var series = stack(data);
-    return series;
 }
 
 // function that sets width and height of frame
@@ -241,7 +93,7 @@ function updateFrameDimensions() {
     sidebarWidth = 250;
 
     graphZoneHeight = sidebarHeight;
-    graphZoneWidth = frameWidth - 270;
+    graphZoneWidth = frameWidth - 350;
 
     var svg = d3.select("svg");
     var frameRect = svg.selectAll(".framerect");
@@ -253,12 +105,92 @@ function updateFrameDimensions() {
         .attr("height", frameHeight);
 
     var sidebarRect = svg.selectAll(".sidebarrect");
-        sidebarRect
-            .attr("class", "sidebarrect")
-            .attr("x", 40)
-            .attr("y", 140)
-            .attr("width", sidebarWidth)
-            .attr("height", sidebarHeight);
+    sidebarRect
+        .attr("class", "sidebarrect")
+        .attr("x", 40)
+        .attr("y", 140)
+        .attr("width", sidebarWidth)
+        .attr("height", sidebarHeight);
 
     return {graphZoneWidth, graphZoneHeight};
-    }
+}
+
+// function that filters data based on min and max rank, inclusive.
+function filterRank(data, rankMin, rankMax) {
+    var rankRange = data.filter(function(d){
+        return d.rank <= rankMax && d.rank >= rankMin;
+    });
+    return rankRange;
+}
+
+// function that creates a stacked data based on sales per region (NA, JPN, and Other)
+function createStackedGraph(data) {
+    var stack = d3.stack(data)
+        .keys(["salesJPN", "salesNA", "salesEU", "salesOther"])
+        .order(d3.stackOrderNone)
+        .offset(d3.stackOffsetNone);
+    
+    var series = stack(data);
+    return series;
+}
+
+// function that draws bars for a certain region
+function drawRegionBars(region, data, graphDimensions, xScale, yScale) {
+    var svg = d3.select("svg");
+    var barGrBars = svg.selectAll("#"+ region)
+        .data(data);
+
+    var barEnter = barGrBars.enter().append("rect")
+        .attr("id", region)
+        .attr("class", "barRect")
+        .attr("x", function(d) {
+            return xScale(d.rank);
+        })
+        .attr("y", function(d) {
+            if (region == "JPN") {yVar = d.JPNrect[1]; }
+            else if (region == "NA") {yVar = d.NArect[1];}
+            else if (region == "EU") {yVar = d.EUrect[1];}
+            else { yVar = d.Otherrect[1];}
+            return yScale(yVar);
+        })
+        .attr("width", function(d) {
+            return (graphDimensions.graphZoneWidth/50);
+        })
+        .attr("height", function(d) {
+            if (region == "JPN") {heightVar = d.JPNrect[1]-d.JPNrect[0];}
+            else if (region == "NA") {heightVar = d.NArect[1]-d.NArect[0];}
+            else if (region == "EU") {heightVar = d.EUrect[1]-d.EUrect[0];}
+            else {heightVar = d.Otherrect[1]-d.Otherrect[0];}
+            return graphDimensions.graphZoneHeight + 140 -(yScale(heightVar));
+        })
+        .attr("fill", function(d) {
+            if (region == "JPN") {color = "red";}
+            else if (region == "NA") {color = "blue";}
+            else if (region == "EU") {color = "orange";}
+            else {color = "green";}
+            return color;
+        });
+    barGrBars.merge(barEnter) //tooltip functionality
+        .on("click", function(d) {
+            console.log(d.name);
+        })
+        .on("mousemove", function(d) {
+            var mouse = d3.mouse(this);
+            d3.select("#tooltip")
+                .style("display", "block")
+                .html("<h3>" + d.name + "</h3><h4>" 
+                        + d.platform + "<br/>"
+                        + d3.format("(.3s")(d["sales" + region])+ " sales</h4>") //only JPN sales until i figure out how to get tooltips for other bars
+                .style("left", mouse[0] - 140 + "px")
+                .style("top", mouse[1] - 130 + "px");
+        })
+        .on("mouseout", function(d) {
+            d3.select("#tooltip")
+                .style("display", "none")
+        });
+    return barGrBars;
+}
+
+
+
+

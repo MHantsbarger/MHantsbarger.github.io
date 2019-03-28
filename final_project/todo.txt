@@ -1,4 +1,12 @@
 To do for next week:
+1. DONE: Add tooltips for all bars in the graph.
+2. Add filter buttons and begin hooking up year.
+3. Fonts and backgrounds.
+4. MINOR: Format width/height/positioning in CSS and pass to js for graph scaling.
+
+
+
+Last week's goals:
 1. Get stacked color coded bars for top 50 games, by region sold.
     stacked bars (https://github.com/d3/d3-shape/blob/master/README.md#stacks)
     DONE: data stacked into four stacked bars for each region (NA,EU,JPN,Other)

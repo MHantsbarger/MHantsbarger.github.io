@@ -5,22 +5,26 @@
         <title>Video Game Sales Visualization</title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <link rel="stylesheet" href="style.css"/> 
-        <!-- check google fonts for specific fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto" rel="stylesheet"> 
+        <!-- belwe font for fantasy theme -->
+        <!-- pixel cowboy and yoster island for pixel -->
+        <!-- press start and roboto for old school -->
+        <!-- orbitron for sci fi theme -->
     </head>
     <body>
         <svg>
             <!-- <rect id="bgRect"/> -->
-            <rect class ="framerect" x="5px" y="100px" width="98%" height="500px" fill="white" stroke-width="1" stroke="black"/>
-            <rect class ="sidebarrect" x="20px" y="120px" width="250px" height="460px" fill="white" stroke-width="1" stroke="black"/>
+            <rect class ="framerect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.9"/>
+            <rect class ="sidebarrect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.5"/>
             <!-- <rect x="5px" y="620px" width="98%" height="300px" fill="white" stroke-width="1" stroke="black"/> -->
             <!-- <rect x="300px" y="120px" width="98%" height="460px" fill="white" stroke-width="1" stroke="black"/> -->
             <g id="yAxis" transform="translate(340,0)"></g>
         </svg>
         <a href="/index.html">Return to index</a><br/>
-        <h1>Final Project Scaffolding</h1>
-        <h2>Exploratory Visualization of data of the top selling video games from 1980-2016 (as of 10/26/2016).</h2>
+        <h1>Video Game Sales</h1>
+        <h2>Exploring the 16,600 top-selling video games from 1980-2016 (as of 10/26/2016)</h2>
         <!-- <p class=barGraph>Bar Graph: initially shows top 100 games.</p> -->
-        <p class=sideBar>Sidebar containing filters for graph.<br/><br/>
+        <!-- <p class=sideBar>Sidebar containing filters for graph.<br/><br/>
             Top part contains "presets"<br/><br/>
             Lower section contains discrete filters.<br/><br/>
             Filters include:<br/>
@@ -29,7 +33,7 @@
             -Console<br/>
             -Genre<br/>
             -Region(NA,EU,JPN,or other)<br/>
-            -Rank range</p>
+            -Rank range</p> -->
         <!-- <p class=lowerSecDesc>Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
             For each game show relevant data and visualization for sales.<br/>
             For each developer show list of games, their rank, and sales.<br/>
