@@ -1,7 +1,8 @@
 To do for next week:
-    - Add year filter and implement functionality
-    - Add region filter and implement functionality
-    - Add rest of filters (nonfunctional for now)
+    - DONE: Add year filter and implement functionality
+    - DONE: Add region filter and implement functionality
+    - Change x axis to be first X amount of array.
+    - Add rest of filters (as much functionality as possible)
     - Add my name
 
     - MINOR: Make BG less obviously tiled
