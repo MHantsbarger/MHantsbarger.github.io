@@ -1,14 +1,26 @@
 To do for next week:
+    - Add year filter and implement functionality
+    - Add region filter and implement functionality
+    - Add rest of filters (nonfunctional for now)
+    - Add my name
+
+    - MINOR: Make BG less obviously tiled
+    - MINOR: Begin to implement themes.
+    - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
+
+Issues:
+    - how to clear barGrBars?
+    - Rank might be confused with "rank of other filtered games"
+    - Around 275 games with N/A as year published.
+
+
+
+3/28 goals:
 1. DONE: Add tooltips for all bars in the graph.
 2. IN PROGRESS: Add filter buttons and begin hooking up year.
 3. DONE (always more to do): Fonts and backgrounds.
 
-
-4. MINOR: Format width/height/positioning in CSS and pass to js for graph scaling.
-
-
-
-Last week's goals:
+3/21 goals:
 1. Get stacked color coded bars for top 50 games, by region sold.
     stacked bars (https://github.com/d3/d3-shape/blob/master/README.md#stacks)
     DONE: data stacked into four stacked bars for each region (NA,EU,JPN,Other)

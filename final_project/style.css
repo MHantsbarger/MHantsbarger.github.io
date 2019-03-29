@@ -72,6 +72,7 @@ h4 { /*tooltip text*/
     margin-left:3px;
     top:140px;
     left:40px;
+    width: 250px;
 }
 .lowerSecDesc{ /*description of lower section*/
     font-family: Verdana, sans-serif;

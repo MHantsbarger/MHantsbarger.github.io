@@ -1,7 +1,13 @@
+// global variables
+var globalData; //whole dataset
+var filteredData; //filtered dataset for graph
+var graphDimensions;
+var rankRange;
+
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load and handle data
     console.log("csv data error:", error);
-    console.log("csv contents:", data);
+    // console.log("csv contents:", data);
 
     // parse data into variables
     data.forEach( 
@@ -20,66 +26,12 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
             // console.log(d);
         }
     );
-    
-
-    // load in top 50 games
-    var filteredData = filterRank(data,1,50);
-    //console.log(filteredData);
-
-    var graphDimensions = updateFrameDimensions();
-    // console.log(graphDimensions);
-    
-    var graphScales;
-    // set up scale for top 50 games
-    graphScales = setScale(
-        [1,51], [350, 350 + graphDimensions.graphZoneWidth],
-        [0, 90000000], [graphDimensions.graphZoneHeight + 140, 140]);
-    var xScale = graphScales[0];
-    var yScale = graphScales[1];
-    
-    var series = createStackedGraph(filteredData);
-    // console.log (series);
-
-    filteredData.forEach(
-        function(d,i) {
-            d.JPNrect = series[0][i];
-            d.NArect = series[1][i];
-            d.EUrect = series[2][i];
-            d.Otherrect = series[3][i];
-        }
-    );
-    // console.log(filteredData);
-
-    // var barGrBars = svg.selectAll("barRect")
-    // .data(filteredData);
-
-    var svg = d3.select("svg");
-
-    var JPNbarGraph = drawRegionBars("JPN", filteredData, graphDimensions, xScale, yScale);
-
-    var NAbarGraph = drawRegionBars("NA", filteredData, graphDimensions, xScale, yScale);
-
-    var EUbarGraph = drawRegionBars("EU", filteredData, graphDimensions, xScale, yScale);
-
-    var OtherbarGraph = drawRegionBars("Other", filteredData, graphDimensions, xScale, yScale);
-    
-    var axis = d3.axisLeft(yScale);
-    axis.tickFormat(d3.format("(.2s"));
-    d3.select("#yAxis").call(axis);
+    globalData = data;
+    filteredData = globalData;
+    graphDimensions = updateFrameDimensions();
+    update();
 
 });
-
-// function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
-function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
-    var xScale = d3.scaleLinear()
-        .domain([dXmin, dXmax])
-        .range([rXmin, rXmax]);
-
-    var yScale = d3.scaleLinear()
-        .domain([dYmin, dYmax])
-        .range([rYmin, rYmax]);
-    return [xScale, yScale];
-}
 
 // function that sets width and height of frame
 function updateFrameDimensions() {
@@ -115,31 +67,107 @@ function updateFrameDimensions() {
     return {graphZoneWidth, graphZoneHeight};
 }
 
+//function that runs all filters and draws graph
+function update() {
+    filteredData = globalData;
+    console.log("original data");
+    console.log(globalData)
+    console.log("reset: ");
+    console.log(filteredData);
+    filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
+    console.log("yearfilter: ");
+    console.log(filteredData);
+    var rankMin = document.querySelector('#rankmin').value;
+    var rankMax = document.querySelector('#rankmax').value;
+    rankRange = rankMax - rankMin +1;
+    filteredData = filterRank(rankMin, rankMax);
+    console.log("rankfilter: ");
+    console.log(filteredData);
+
+    console.log(document.querySelector('#rankmin').value);
+    console.log(parseInt(document.querySelector('#rankmax').value)+1);
+    var graphScales;
+    // set up scale for top 50 games
+    graphScales = setScale(
+        [document.querySelector('#rankmin').value,(parseInt(document.querySelector('#rankmax').value)+1)], [350, 350 + graphDimensions.graphZoneWidth],
+        [0, 90000000], [graphDimensions.graphZoneHeight + 140, 140]);0
+    var xScale = graphScales[0];
+    var yScale = graphScales[1];
+    
+    var series = createStackedGraph();
+    // console.log (series);
+
+    filteredData.forEach(
+        function(d,i) {
+            d.JPNrect = series[0][i];
+            d.NArect = series[1][i];
+            d.EUrect = series[2][i];
+            d.Otherrect = series[3][i];
+        }
+    );
+    // console.log(filteredData);
+
+    var svg = d3.select("svg");
+
+    clearRegionBars();
+
+    var JPNbarGraph = drawRegionBars("JPN", xScale, yScale);
+
+    var NAbarGraph = drawRegionBars("NA", xScale, yScale);
+
+    var EUbarGraph = drawRegionBars("EU", xScale, yScale);
+
+    var OtherbarGraph = drawRegionBars("Other", xScale, yScale);
+    
+    var axis = d3.axisLeft(yScale);
+    axis.tickFormat(d3.format("(.2s"));
+    d3.select("#yAxis").call(axis);
+}
+
+// function that filters data based on year, inclusive.
+function filterYear(yearMin,yearMax) {
+    var yearData = filteredData.filter(function(d){
+        return d.year <= yearMax && d.year >= yearMin;
+    });
+    return yearData;
+}
+
 // function that filters data based on min and max rank, inclusive.
-function filterRank(data, rankMin, rankMax) {
-    var rankRange = data.filter(function(d){
+function filterRank(rankMin, rankMax) {
+    var rankData = filteredData.filter(function(d){
         return d.rank <= rankMax && d.rank >= rankMin;
     });
-    return rankRange;
+    return rankData;
+}
+
+// function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
+function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
+    var xScale = d3.scaleLinear()
+        .domain([dXmin, dXmax])
+        .range([rXmin, rXmax]);
+
+    var yScale = d3.scaleLinear()
+        .domain([dYmin, dYmax])
+        .range([rYmin, rYmax]);
+    return [xScale, yScale];
 }
 
 // function that creates a stacked data based on sales per region (NA, JPN, and Other)
-function createStackedGraph(data) {
-    var stack = d3.stack(data)
+function createStackedGraph() {
+    var stack = d3.stack(filteredData)
         .keys(["salesJPN", "salesNA", "salesEU", "salesOther"])
         .order(d3.stackOrderNone)
         .offset(d3.stackOffsetNone);
     
-    var series = stack(data);
+    var series = stack(filteredData);
     return series;
 }
 
 // function that draws bars for a certain region
-function drawRegionBars(region, data, graphDimensions, xScale, yScale) {
+function drawRegionBars(region, xScale, yScale) {
     var svg = d3.select("svg");
     var barGrBars = svg.selectAll("#"+ region)
-        .data(data);
-
+        .data(filteredData);
     var barEnter = barGrBars.enter().append("rect")
         .attr("id", region)
         .attr("class", "barRect")
@@ -154,7 +182,7 @@ function drawRegionBars(region, data, graphDimensions, xScale, yScale) {
             return yScale(yVar);
         })
         .attr("width", function(d) {
-            return (graphDimensions.graphZoneWidth/50);
+            return (graphDimensions.graphZoneWidth/rankRange);
         })
         .attr("height", function(d) {
             if (region == "JPN") {heightVar = d.JPNrect[1]-d.JPNrect[0];}
@@ -180,7 +208,7 @@ function drawRegionBars(region, data, graphDimensions, xScale, yScale) {
                 .style("display", "block")
                 .html("<h3>" + d.name + "</h3><h4>" 
                         + d.platform + "<br/>"
-                        + d3.format("(.3s")(d["sales" + region])+ " sales</h4>") //only JPN sales until i figure out how to get tooltips for other bars
+                        + d3.format("(.3s")(d["sales" + region])+ " sales</h4>")
                 .style("left", mouse[0] - 140 + "px")
                 .style("top", mouse[1] - 130 + "px");
         })
@@ -188,9 +216,15 @@ function drawRegionBars(region, data, graphDimensions, xScale, yScale) {
             d3.select("#tooltip")
                 .style("display", "none")
         });
+    var barGrBars = svg.selectAll("#"+ region);
     return barGrBars;
 }
 
-
+function clearRegionBars() {
+    var svg = d3.select("svg");
+    var barGrBars = svg.selectAll("rect")
+        .data(filteredData);
+    barGrBars.exit().remove();
+}
 
 

@@ -35,16 +35,21 @@
             -Region(NA,EU,JPN,or other)<br/>
             -Rank range</p> -->
         <p class=sideBar>
-            <select id ="regionDropdown">
-                <option value="AllRegions">All Regions</option>
-                <option value="Japan">Japan</option>
-                <option value="NorthAmerica">North America</option>
-                <option value="Europe">Europe</option>
-                <option value="Other">Everywhere Else</option>
-            </select><br>
-            Min rank: <input type="number" name="MinRank" value="rankmin"><br>
-            Max rank: <input type="number" name="MaxRank" value="rankmax"><br>
-            <button type="button" onclick="filterRank(data, rankmin, rankmax)">Show Data</button><br>
+            Year Range:
+                <input required type="number" id="yearmin" name="MinYear" value="1980" min="1980" max="2016">
+                <input required type="number" id="yearmax" name="MaxYear" value="2016" min="1980" max="2016"><br>
+            Publisher: <br>
+            Console: <br>
+            Genre: <br>
+            Regions: <br>
+                <input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
+                <input type="checkbox" id="naToggle" name="NorthAmericaSelect" checked>North America</option><br>
+                <input type="checkbox" id="euToggle" name="EuropeSelect" checked>Europe</option><br>
+                <input type="checkbox" id="otherToggle" name="OtherSelect" checked>Everywhere Else</option><br>
+            Min rank: <input type="number" id ="rankmin" name="MinRank" value="1" min="1" max="16600"><br>
+            Max rank: <input type="number" id ="rankmax" name="MaxRank" value="50" min="1" max="16600"><br>
+            Number of games displayed: <input type="number" id ="gamemax" name="graphmax" value="50" min="1" max="100" disabled><br>
+            <button type="button" onclick="update()">Show Data</button><br>
         </p>
         <!-- <p class=lowerSecDesc>Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
             For each game show relevant data and visualization for sales.<br/>
