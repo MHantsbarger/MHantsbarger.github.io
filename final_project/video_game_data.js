@@ -198,21 +198,16 @@ function drawRegionBars(region) {
         })
         .attr("y", function(d) {
             // return yScale(1);
-            if (region == "JPN") {yVar = d.JPNrect[0]; }
-            else if (region == "NA") {yVar = d.NArect[0];}
-            else if (region == "EU") {yVar = d.EUrect[0];}
-            else { yVar = d.Otherrect[0];}
+            if (region == "JPN") {yVar = d.JPNrect[0]/4; }
+            else if (region == "NA") {yVar = d.NArect[0]/4;}
+            else if (region == "EU") {yVar = d.EUrect[0]/4;}
+            else { yVar = d.Otherrect[0]/4;}
             return yScaleOld(yVar);
         })
         .attr("width", function(d) {
             return (graphDimensions.graphZoneWidth/rankRangePrev);
         })
         .attr("height", function(d) {
-            // if (region == "JPN") {heightVar = d.JPNrect[1]-d.JPNrect[0];}
-            // else if (region == "NA") {heightVar = d.NArect[1]-d.NArect[0];}
-            // else if (region == "EU") {heightVar = d.EUrect[1]-d.EUrect[0];}
-            // else {heightVar = d.Otherrect[1]-d.Otherrect[0];}
-            // return graphDimensions.graphZoneHeight + 140 -(yScale(heightVar));
             return 0;
         })
         .attr("fill", function(d) {
@@ -222,11 +217,11 @@ function drawRegionBars(region) {
             else {color = "green";}
             return color;
         });
-    barGrBars.merge(barEnter) //tooltip functionality
+    barGrBars.merge(barEnter) 
         .on("click", function(d) {
             console.log(d.name);
         })
-        .on("mousemove", function(d) {
+        .on("mousemove", function(d) { //tooltip functionality
             var mouse = d3.mouse(this);
             d3.select("#tooltip")
                 .style("display", "block")
@@ -236,7 +231,7 @@ function drawRegionBars(region) {
                 .style("left", mouse[0] - 140 + "px")
                 .style("top", mouse[1] - 130 + "px");
         })
-        .on("mouseout", function(d) {
+        .on("mouseout", function(d) { //hide tooltip
             d3.select("#tooltip")
                 .style("display", "none")
         })
@@ -268,25 +263,21 @@ function drawRegionBars(region) {
                 else {color = "green";}
                 return color;
             });
-    barGrBars.exit().transition().duration(1500)
-        .attr("x", function(d) {
-            return xScale(d.rank);
-        })
-        .attr("y", function(d) {
-            // return yScale(1);
-            if (region == "JPN") {yVar = d.JPNrect[0]; }
-            else if (region == "NA") {yVar = d.NArect[0];}
-            else if (region == "EU") {yVar = d.EUrect[0];}
-            else { yVar = d.Otherrect[0];}
-            return yScale(yVar);
-        })
-        .attr("width", function(d) {
-            return (graphDimensions.graphZoneWidth/rankRange);
-        })
-        .attr("height", function(d) {
-            return 0;
-        })
-        .remove();
+    barGrBars.exit()
+        .transition().duration(1000)
+            .attr("y", function(d) {
+                // return yScale(1);
+                if (region == "JPN") {yVar = d.JPNrect[0]; }
+                else if (region == "NA") {yVar = d.NArect[0];}
+                else if (region == "EU") {yVar = d.EUrect[0];}
+                else { yVar = d.Otherrect[0];}
+                return yScale(yVar);
+            })
+            
+            .attr("height", function(d) {
+                return 0;
+            })
+            .remove();
     var barGrBars = svg.selectAll("#"+ region);
     return barGrBars;
 }
