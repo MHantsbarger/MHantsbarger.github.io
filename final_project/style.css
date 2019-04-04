@@ -19,14 +19,22 @@ h2 { /*subtitle*/
     margin:0;
     text-align:center;
 }
-h3 { /*tooltip title*/
+h3 { /*credits*/
+    font-family: 'Roboto', sans-serif;
+    /* font-style: italic; */
+    color: white;
+    font-size: 12px;
+    margin:5px;
+    text-align:center;
+}
+h4 { /*tooltip title*/
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     margin:1px;
     margin-left:5px;
     text-align:center;
 }
-h4 { /*tooltip text*/
+h5 { /*tooltip text*/
     font-family: 'Roboto', sans-serif;
     /* font-family: 'Press Start 2P', cursive; */
     font-size: 16px;

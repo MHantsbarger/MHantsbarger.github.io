@@ -1,19 +1,27 @@
 To do for next week:
+    - Add functionality of publisher, console, and genre filters
+    - Add dynamic y scaling
+    - Solve year filter leaving gaps
+
+4/4 goals:
     - DONE: Add year filter and implement functionality
     - DONE: Add region filter and implement functionality
-    - DONE: Change x axis to be first X amount of array.
-    - Add rest of filters (as much functionality as possible)
-    - Add my name
-
-    - BONUS: Add dynamic y scaling
+    - DONE: When all years included, include ones that dont have years.
+    - DONE: Add my name and credits
+    - DONE: Added filter to limit number of games shown
+    
+    - IN PROGRESS: Add rest of filters (as much functionality as possible)
 
     - MINOR: Make BG less obviously tiled
     - MINOR: Begin to implement themes.
-    - MINOR: When all years included, include ones that dont have years.
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
-    - how to clear barGrBars?
+    - Filtering by year shouldn't leave gaps
+    - 500+ publishers, populate whole dropdown or just select top x?
+    - Want to dynamically add console key to console dropdown (ditto for Genre)
+
+------------------------------------------------------------------------------------------------
 
 3/28 goals:
 1. DONE: Add tooltips for all bars in the graph.

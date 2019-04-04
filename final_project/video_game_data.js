@@ -176,10 +176,15 @@ function update() {
 
 // function that filters data based on year, inclusive.
 function filterYear(yearMin,yearMax) {
-    var yearData = filteredData.filter(function(d){
-        return d.year <= yearMax && d.year >= yearMin;
-    });
-    return yearData;
+    if (yearMin == 1980 && yearMax == 2016) { //if filter includes all years, avoid filtering so that games with unknown years are included
+        return filteredData;
+    }
+    else {
+        var yearData = filteredData.filter(function(d){
+            return d.year <= yearMax && d.year >= yearMin;
+        });
+        return yearData;
+    }
 }
 
 // function that filters data based on min and max rank, inclusive.
@@ -300,9 +305,9 @@ function drawRegionBars(region) {
             var mouse = d3.mouse(this);
             d3.select("#tooltip")
                 .style("display", "block")
-                .html("<h3>" + d.name + "</h3><h4>" 
+                .html("<h4>" + d.name + "</h4><h5>" 
                         + d.platform + "<br/>"
-                        + d3.format("(.3s")(d["sales" + region])+ " sales</h4>")
+                        + d3.format("(.3s")(d["sales" + region])+ " sales</h5>")
                 .style("left", mouse[0] - 140 + "px")
                 .style("top", mouse[1] - 130 + "px");
         })
