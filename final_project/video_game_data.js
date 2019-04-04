@@ -11,7 +11,6 @@ var xScaleOld;
 var yScale;
 var yScaleOld;
 
-
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.queue() //load and handle data
     .defer(d3.csv,"/data/Final_Project_Data/vgsales.csv")
@@ -19,7 +18,7 @@ d3.queue() //load and handle data
     .awaitAll(function(error,dataArray) {
         var data = dataArray[0];
         var consoleMap = dataArray[1];
-// d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load and handle data
+// d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //old way to load and handle data
 //     console.log("csv data error:", error);
     // console.log("csv contents:", data);
 
@@ -110,30 +109,22 @@ function updateFrameDimensions() {
 function update() {
     graphDimensions = updateFrameDimensions();
     filteredData = globalData;
-    // console.log("original data");
-    // console.log(globalData)
-    // console.log("reset: ");
-    // console.log(filteredData);
-    filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
-    // console.log("yearfilter: ");
-    // console.log(filteredData);
+    
+    //setting up rank values
     rankMin = document.querySelector('#rankmin').value;
     rankMax = document.querySelector('#rankmax').value;
-    // console.log(rankRange);
-    rankRangePrev = rankRange;
+    rankRangePrev = rankRange; //holds previous rank for animation transition
     rankRange = parseInt(rankMax) - parseInt(rankMin) + 1;
-    if (rankRange > document.querySelector('#gamemax').value) {
+    if (rankRange > document.querySelector('#gamemax').value) { //limits rank range based on max display value
         rankRange = document.querySelector('#gamemax').value;
         rankMax = parseInt(rankRange) + parseInt(rankMin) - 1;
     }
-    
-    filteredData = filterRank(rankMin, rankMax);
-    filteredData = limitEntries();
-    // console.log("rankfilter: ");
-    // console.log(filteredData);
 
-    // console.log(document.querySelector('#rankmin').value);
-    // console.log(parseInt(document.querySelector('#rankmax').value)+1);
+    //filtering data functions
+    filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
+    filteredData = filterRank(rankMin, rankMax);
+    filterRegion();
+    filteredData = limitEntries();
     
     // set up scale
     var graphScales = setScale(
@@ -155,11 +146,8 @@ function update() {
             d.Otherrect = series[3][i];
         }
     );
-    // console.log(filteredData);
 
     var svg = d3.select("svg");
-
-    clearRegionBars();
 
     var JPNbarGraph = drawRegionBars("JPN");
     
@@ -230,7 +218,6 @@ function filterRegion() {
         else {
             d.salesOther = parseFloat(d.Other_Sales) * 1000000;
         }
-        // console.log(d.salesJPN);
     });
 }
 
@@ -361,8 +348,3 @@ function drawRegionBars(region) {
     var barGrBars = svg.selectAll("#"+ region);
     return barGrBars;
 }
-
-function clearRegionBars() {
-}
-
-
