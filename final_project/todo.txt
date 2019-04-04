@@ -1,20 +1,19 @@
 To do for next week:
     - DONE: Add year filter and implement functionality
     - DONE: Add region filter and implement functionality
-    - Change x axis to be first X amount of array.
+    - DONE: Change x axis to be first X amount of array.
     - Add rest of filters (as much functionality as possible)
     - Add my name
 
+    - BONUS: Add dynamic y scaling
+
     - MINOR: Make BG less obviously tiled
     - MINOR: Begin to implement themes.
+    - MINOR: When all years included, include ones that dont have years.
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
     - how to clear barGrBars?
-    - Rank might be confused with "rank of other filtered games"
-    - Around 275 games with N/A as year published.
-
-
 
 3/28 goals:
 1. DONE: Add tooltips for all bars in the graph.

@@ -35,12 +35,34 @@
             -Region(NA,EU,JPN,or other)<br/>
             -Rank range</p> -->
         <p class=sideBar>
-            Year Range:
+            Year Range:<br>
                 <input required type="number" id="yearmin" name="MinYear" value="1980" min="1980" max="2016">
                 <input required type="number" id="yearmax" name="MaxYear" value="2016" min="1980" max="2016"><br>
-            Publisher: <br>
-            Console: <br>
-            Genre: <br>
+            <!-- Publisher: 
+            
+                <input type="text" id="pubmatch" name="PublisherName"> <input type="reset" name="Clear">
+            <br> -->
+            Publisher: 
+            <select>
+                <option value="AllPublishers">All Publishers</option> <!-- cut down to top 10? -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select> <br>
+            Console: 
+            <select>
+                <option value="AllConsoles">All Consoles</option> <!-- cut down to top 10? -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br>
+            Genre: 
+            <select>
+                <option value="AllGenres">All Genres</option> <!-- cut down to top 10? -->
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select><br>
             Regions: <br>
                 <input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
                 <input type="checkbox" id="naToggle" name="NorthAmericaSelect" checked>North America</option><br>
@@ -48,7 +70,7 @@
                 <input type="checkbox" id="otherToggle" name="OtherSelect" checked>Everywhere Else</option><br>
             Min rank: <input type="number" id ="rankmin" name="MinRank" value="1" min="1" max="16600"><br>
             Max rank: <input type="number" id ="rankmax" name="MaxRank" value="50" min="1" max="16600"><br>
-            Max Number of games displayed: <input type="number" id ="gamemax" name="graphmax" value="50" min="1" max="100" disabled><br>
+            Max Number of games displayed (1-100): <input type="number" id ="gamemax" name="graphmax" value="50" min="1" max="100"><br>
             <button type="button" onclick="update()">Show Data</button><br>
         </p>
         <!-- <p class=lowerSecDesc>Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>

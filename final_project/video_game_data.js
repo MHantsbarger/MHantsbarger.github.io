@@ -11,9 +11,16 @@ var xScaleOld;
 var yScale;
 var yScaleOld;
 
+
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
-d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load and handle data
-    console.log("csv data error:", error);
+d3.queue() //load and handle data
+    .defer(d3.csv,"/data/Final_Project_Data/vgsales.csv")
+    .defer(d3.csv,"/data/Final_Project_Data/ConsoleNameAbbrvMap.csv")
+    .awaitAll(function(error,dataArray) {
+        var data = dataArray[0];
+        var consoleMap = dataArray[1];
+// d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load and handle data
+//     console.log("csv data error:", error);
     // console.log("csv contents:", data);
 
     // parse data into variables
@@ -35,7 +42,23 @@ d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //load an
     );
     globalData = data;
     filteredData = globalData;
-    
+
+    // var publisherList = d3.nest()
+    // .key(function(d) {
+    //     return d.publisher;
+    // })
+    // .entries(data);
+    // console.log("publisher list:");
+    // console.log(publisherList);
+
+    // var consoleList = d3.nest()
+    // .key(function(d) {
+    //     return d.platform;
+    // })
+    // .entries(data);
+    // console.log("console list:");
+    // console.log(consoleList);
+
     graphDimensions = updateFrameDimensions();
     var graphScales = setScale(
         [rankMin,(parseInt(rankMax)+1)], [350, 350 + graphDimensions.graphZoneWidth],
@@ -87,26 +110,31 @@ function updateFrameDimensions() {
 function update() {
     graphDimensions = updateFrameDimensions();
     filteredData = globalData;
-    console.log("original data");
-    console.log(globalData)
-    console.log("reset: ");
-    console.log(filteredData);
+    // console.log("original data");
+    // console.log(globalData)
+    // console.log("reset: ");
+    // console.log(filteredData);
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
-    console.log("yearfilter: ");
-    console.log(filteredData);
+    // console.log("yearfilter: ");
+    // console.log(filteredData);
     rankMin = document.querySelector('#rankmin').value;
     rankMax = document.querySelector('#rankmax').value;
-    console.log(rankRange);
+    // console.log(rankRange);
     rankRangePrev = rankRange;
-    rankRange = rankMax - rankMin +1;
+    rankRange = parseInt(rankMax) - parseInt(rankMin) + 1;
+    if (rankRange > document.querySelector('#gamemax').value) {
+        rankRange = document.querySelector('#gamemax').value;
+        rankMax = parseInt(rankRange) + parseInt(rankMin) - 1;
+    }
+    
     filteredData = filterRank(rankMin, rankMax);
-    console.log("rankfilter: ");
-    console.log(filteredData);
+    filteredData = limitEntries();
+    // console.log("rankfilter: ");
+    // console.log(filteredData);
 
-    console.log(document.querySelector('#rankmin').value);
-    console.log(parseInt(document.querySelector('#rankmax').value)+1);
-
-
+    // console.log(document.querySelector('#rankmin').value);
+    // console.log(parseInt(document.querySelector('#rankmax').value)+1);
+    
     // set up scale
     var graphScales = setScale(
         [rankMin,(parseInt(rankMax)+1)], [350, 350 + graphDimensions.graphZoneWidth],
@@ -118,9 +146,9 @@ function update() {
     
     var series = createStackedGraph();
     // console.log (series);
-
+    
     filteredData.forEach(
-        function(d,i) {
+        function(d,i) { 
             d.JPNrect = series[0][i];
             d.NArect = series[1][i];
             d.EUrect = series[2][i];
@@ -134,7 +162,7 @@ function update() {
     clearRegionBars();
 
     var JPNbarGraph = drawRegionBars("JPN");
-
+    
     var NAbarGraph = drawRegionBars("NA");
 
     var EUbarGraph = drawRegionBars("EU");
@@ -160,6 +188,53 @@ function filterRank(rankMin, rankMax) {
         return d.rank <= rankMax && d.rank >= rankMin;
     });
     return rankData;
+}
+
+// function that filters data based on publisher.
+function filterPublisher(Publisher) {
+    var pubData = filteredData.filter(function(d){
+        return d.publisher == Publisher;
+    });
+    return pubData;
+}
+
+// function that filters data based on region
+function filterRegion() {
+    filteredData.forEach(function(d){
+        if (document.querySelector('#jpnToggle').checked == false) {
+            d.salesJPN = 0;
+        }
+        else {
+            d.salesJPN = parseFloat(d.JP_Sales) * 1000000;
+        }
+        if (document.querySelector('#naToggle').checked == false) {
+            d.salesNA = 0;
+        }
+        else {
+            d.salesNA = parseFloat(d.NA_Sales) * 1000000;
+        }
+        if (document.querySelector('#euToggle').checked == false) {
+            d.salesEU = 0;
+        }
+        else {
+            d.salesEU = parseFloat(d.EU_Sales) * 1000000;
+        }
+        if (document.querySelector('#otherToggle').checked == false) {
+            d.salesOther = 0;
+        }
+        else {
+            d.salesOther = parseFloat(d.Other_Sales) * 1000000;
+        }
+        // console.log(d.salesJPN);
+    });
+}
+
+//function that limits number of shown entries
+function limitEntries() {
+    var limitData = filteredData.filter(function(d,i){
+        return i < document.querySelector('#gamemax').value;
+    });
+    return limitData;
 }
 
 // function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
