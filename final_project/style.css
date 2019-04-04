@@ -8,7 +8,8 @@ h1 { /* title*/
     font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 32px;
-    margin:0;
+    margin:5px;
+    margin-top:20px;
     text-align:center;
 }
 h2 { /*subtitle*/
@@ -49,6 +50,22 @@ h5 { /*tooltip text*/
     display: none;
     position: absolute;
 }
+#backButton{
+    color: white;
+    font-size: 16px;
+    top: 0;
+    left: 0;
+    margin: 5px;
+    position: absolute;
+}
+#themeButton {
+    color: white;
+    font-size: 16px;
+    top: 0;
+    right: 0;
+    margin: 5px;
+    position: absolute;
+}
 a:link { /* unvisited link */
     color: cornflowerblue;
 }
@@ -57,6 +74,16 @@ a:visited { /* visited link */
 }
 a:hover { /* mouseover link */
     color: red;
+}
+.sideBar { 
+    font-family: Verdana, sans-serif;
+    position: absolute;
+    font-size: 10px;
+    margin:3;
+    margin-left:3px;
+    top:140px;
+    left:40px;
+    width: 250px;
 }
 svg { /*svg formatting*/
     position:absolute;
