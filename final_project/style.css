@@ -49,6 +49,24 @@ h5 { /*tooltip text*/
     display: none;
     position: absolute;
 }
+a:link { /* unvisited link */
+    color: cornflowerblue;
+}
+a:visited { /* visited link */
+    color: plum;
+}
+a:hover { /* mouseover link */
+    color: red;
+}
+svg { /*svg formatting*/
+    position:absolute;
+    top:0px;
+    left:0px;
+    width:100%;
+    height:100%;
+    z-index: -1;
+}
+
 /* #framerect{
     x: 20;
     y: 120;
@@ -61,40 +79,3 @@ h5 { /*tooltip text*/
     width: 250px;
     height: calc(100%-280px);
 } */
-
-
-/* placeholder text */
-.barGraph { /*text for bar graph*/
-    font-family: Verdana, sans-serif;
-    position: absolute;
-    font-size: 10px;
-    margin:0;
-    top:350px;
-    left:50%;
-}
-.sideBar { /*text for sidebar*/
-    font-family: Verdana, sans-serif;
-    position: absolute;
-    font-size: 10px;
-    margin:3;
-    margin-left:3px;
-    top:140px;
-    left:40px;
-    width: 250px;
-}
-.lowerSecDesc{ /*description of lower section*/
-    font-family: Verdana, sans-serif;
-    position: absolute;
-    font-size: 10px;
-    margin:0;
-    top:630px;
-    left:25px;
-}
-svg { /*svg formatting*/
-    position:absolute;
-    top:0px;
-    left:0px;
-    width:100%;
-    height:100%;
-    z-index: -1;
-}

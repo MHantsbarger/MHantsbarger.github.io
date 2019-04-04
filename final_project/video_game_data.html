@@ -13,7 +13,6 @@
     </head>
     <body>
         <svg>
-            <!-- <rect id="bgRect"/> -->
             <rect class ="framerect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.9"/>
             <rect class ="sidebarrect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.5"/>
             <!-- <rect x="5px" y="620px" width="98%" height="300px" fill="white" stroke-width="1" stroke="black"/> -->
@@ -25,23 +24,14 @@
         <h2>Exploring the 16,600 top-selling video games from 1980-2016 (as of 10/26/2016)<br></h2>
         <h3>Visualization by Matthew Hantsbarger | Data collected by Gregory Smith 
             (<a href = "https://www.kaggle.com/gregorut/videogamesales#vgsales.csv">source</a>) </h3>
-        <!-- <p class=barGraph>Bar Graph: initially shows top 100 games.</p> -->
-        <!-- <p class=sideBar>Sidebar containing filters for graph.<br/><br/>
+        <!--Sidebar containing filters for graph.<br/><br/>
             Top part contains "presets"<br/><br/>
-            Lower section contains discrete filters.<br/><br/>
-            Filters include:<br/>
-            -Year released<br/>
-            -Publisher<br/>
-            -Console<br/>
-            -Genre<br/>
-            -Region(NA,EU,JPN,or other)<br/>
-            -Rank range</p> -->
+            Lower section contains discrete filters.<br/><br/> -->
         <p class=sideBar>
             Year Range:<br>
                 <input required type="number" id="yearmin" name="MinYear" value="1980" min="1980" max="2016">
                 <input required type="number" id="yearmax" name="MaxYear" value="2016" min="1980" max="2016"><br>
             <!-- Publisher: 
-            
                 <input type="text" id="pubmatch" name="PublisherName"> <input type="reset" name="Clear">
             <br> -->
             Publisher (WIP): 
@@ -75,10 +65,10 @@
             Max Number of games displayed (1-100): <input type="number" id ="gamemax" name="graphmax" value="50" min="1" max="100"><br>
             <button type="button" onclick="update()">Show Data</button><br>
         </p>
-        <!-- <p class=lowerSecDesc>Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
+        <!--Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
             For each game show relevant data and visualization for sales.<br/>
             For each developer show list of games, their rank, and sales.<br/>
-            Text has context sensitive actions (clicking on game's publisher brings up info on that publisher & vice versa; clicking on year filters top graph to only show that year, etc.)</p> -->
+            Text has context sensitive actions (clicking on game's publisher brings up info on that publisher & vice versa; clicking on year filters top graph to only show that year, etc.) -->
         <div id="tooltip"></div>
         <script src="video_game_data.js"></script>
     </body>

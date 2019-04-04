@@ -9,8 +9,6 @@ To do for next week:
     - DONE: When all years included, include ones that dont have years.
     - DONE: Add my name and credits
     - DONE: Added filter to limit number of games shown
-    
-    - IN PROGRESS: Add rest of filters (as much functionality as possible)
 
     - MINOR: Make BG less obviously tiled
     - MINOR: Begin to implement themes.
