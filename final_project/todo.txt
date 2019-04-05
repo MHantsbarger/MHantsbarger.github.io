@@ -13,7 +13,8 @@ To do for next week:
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
-    - 
+    - sort function in filterRank not working. may be incorrect function
+    - how to get boxes to remember themselves, not just shift from list of squares?
 ------------------------------------------------------------------------------------------------
 
 4/4 goals:

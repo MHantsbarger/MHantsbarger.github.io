@@ -1,4 +1,5 @@
 // global variables
+var consoleMap;
 var globalData; //whole dataset
 var filteredData; //filtered dataset for graph
 var graphDimensions;
@@ -17,7 +18,7 @@ d3.queue() //load and handle data
     .defer(d3.csv,"/data/Final_Project_Data/ConsoleNameAbbrvMap.csv")
     .awaitAll(function(error,dataArray) {
         var data = dataArray[0];
-        var consoleMap = dataArray[1];
+        consoleMap = dataArray[1];
 // d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //old way to load and handle data
 //     console.log("csv data error:", error);
     // console.log("csv contents:", data);
@@ -42,22 +43,6 @@ d3.queue() //load and handle data
     globalData = data;
     filteredData = globalData;
 
-    // var publisherList = d3.nest()
-    // .key(function(d) {
-    //     return d.publisher;
-    // })
-    // .entries(data);
-    // console.log("publisher list:");
-    // console.log(publisherList);
-
-    // var consoleList = d3.nest()
-    // .key(function(d) {
-    //     return d.platform;
-    // })
-    // .entries(data);
-    // console.log("console list:");
-    // console.log(consoleList);
-
     graphDimensions = updateFrameDimensions();
     var graphScales = setScale(
         [rankMin,(parseInt(rankMax)+1)], [350, 350 + graphDimensions.graphZoneWidth],
@@ -70,6 +55,41 @@ d3.queue() //load and handle data
     update();
 
 });
+
+// function that populates publisher, genre, and console dropdowns
+function dropdownFill(data) {
+    // publisher
+    var publisherList = d3.nest()
+    .key(function(d) {
+        return d.publisher;
+    })
+    .entries(data);
+    console.log("publisher list:");
+    console.log(publisherList);
+
+    // TODO: sort by name alphabetically
+    // TODO: populate dropdown
+
+    // console
+    var consoleList = d3.nest()
+    .key(function(d) {
+        return d.platform;
+    })
+    .entries(data);
+    console.log("console list:");
+    console.log(consoleList);
+
+    //use consoleMap to correspond to name
+
+    // genre
+    var genreList = d3.nest()
+    .key(function(d) {
+        return d.genre;
+    })
+    .entries(data);
+    console.log("genre list:");
+    console.log(genreList);
+}
 
 // function that sets width and height of frame
 function updateFrameDimensions() {
@@ -126,9 +146,6 @@ function update() {
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
     filterRegion();
     filteredData = filterRank(rankMin, rankMax);
-    
-    //DELETE
-    // filteredData = limitEntries();
     
     // set up scale
     var graphScales = setScale(
@@ -221,7 +238,7 @@ function filterRegion() {
 // function that filters data based on min and max rank, inclusive.
 function filterRank(rankMin, rankMax) {
 
-    //TODO:sort by d.salesTotal, highest to lowest
+    //TODO: sort by d.salesTotal, highest to lowest
     filteredData.sort(function(d){
         return d.salesTotal;
     });
@@ -232,13 +249,6 @@ function filterRank(rankMin, rankMax) {
     });
     return rankData;
 }
-// DELETE function that limits number of shown entries
-// function limitEntries() {
-//     var limitData = filteredData.filter(function(d,i){
-//         return i <= parseInt(rankMax)+1 && i >= parseInt(rankMin)-1;
-//     });
-//     return limitData;
-// }
 
 // function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
 function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
