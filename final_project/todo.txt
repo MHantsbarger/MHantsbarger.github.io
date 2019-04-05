@@ -1,25 +1,29 @@
 To do for next week:
+    - DONE: Change svg region id to class
+    - Change rank to sort and rank data based on filtered data
+        - Filtering by year shouldn't leave gaps
     - Add functionality of publisher, console, and genre filters
+        -500+ publishers, populate whole dropdown or just select top x?
+        - Want to dynamically add console key to console dropdown (ditto for Genre)
     - Add dynamic y scaling
-    - Solve year filter leaving gaps
-
-4/4 goals:
-    - DONE: Add year filter and implement functionality
-    - DONE: Add region filter and implement functionality
-    - DONE: When all years included, include ones that dont have years.
-    - DONE: Add my name and credits
-    - DONE: Added filter to limit number of games shown
+    - Get boxes to remember previous location when performing animation transition.
 
     - MINOR: Make BG less obviously tiled
     - MINOR: Begin to implement themes.
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
-    - Filtering by year shouldn't leave gaps
-    - 500+ publishers, populate whole dropdown or just select top x?
-    - Want to dynamically add console key to console dropdown (ditto for Genre)
-
+    - 
 ------------------------------------------------------------------------------------------------
+
+4/4 goals:
+    - DONE: Add year filter and implement functionality
+    - DONE: Finished rank filter and implement functionality
+    - DONE: Add region filter and implement functionality
+    - DONE: When all years included, include ones that dont have years.
+    - DONE: Add my name and credits
+    - DONE: Added filter to limit number of games shown
+
 
 3/28 goals:
 1. DONE: Add tooltips for all bars in the graph.

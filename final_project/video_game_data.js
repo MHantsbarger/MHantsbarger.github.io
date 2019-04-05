@@ -4,8 +4,8 @@ var filteredData; //filtered dataset for graph
 var graphDimensions;
 var rankMin = document.querySelector('#rankmin').value;
 var rankMax = document.querySelector('#rankmax').value;
-var rankRange = rankMax - rankMin +1
-var rankRangePrev = rankRange;
+var barRange = parseInt(rankMax) - parseInt(rankMin) +1;
+var barRangePrev = barRange;
 var xScale;
 var xScaleOld;
 var yScale;
@@ -113,18 +113,22 @@ function update() {
     //setting up rank values
     rankMin = document.querySelector('#rankmin').value;
     rankMax = document.querySelector('#rankmax').value;
-    rankRangePrev = rankRange; //holds previous rank for animation transition
-    rankRange = parseInt(rankMax) - parseInt(rankMin) + 1;
-    if (rankRange > document.querySelector('#gamemax').value) { //limits rank range based on max display value
-        rankRange = document.querySelector('#gamemax').value;
-        rankMax = parseInt(rankRange) + parseInt(rankMin) - 1;
+    barRangePrev = barRange; //holds previous rank for animation transition
+    barRange = parseInt(rankMax) - parseInt(rankMin) + 1;
+
+    if (barRange > 500) { // only shows 500 bars at a time
+        barRange = 500;
+        rankMax =  parseInt(barRange) + parseInt(rankMin) - 1;
     }
+
 
     //filtering data functions
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
-    filteredData = filterRank(rankMin, rankMax);
     filterRegion();
-    filteredData = limitEntries();
+    filteredData = filterRank(rankMin, rankMax);
+    
+    //DELETE
+    // filteredData = limitEntries();
     
     // set up scale
     var graphScales = setScale(
@@ -175,15 +179,7 @@ function filterYear(yearMin,yearMax) {
     }
 }
 
-// function that filters data based on min and max rank, inclusive.
-function filterRank(rankMin, rankMax) {
-    var rankData = filteredData.filter(function(d){
-        return d.rank <= rankMax && d.rank >= rankMin;
-    });
-    return rankData;
-}
-
-// function that filters data based on publisher.
+// UNUSED function that filters data based on publisher.
 function filterPublisher(Publisher) {
     var pubData = filteredData.filter(function(d){
         return d.publisher == Publisher;
@@ -218,16 +214,31 @@ function filterRegion() {
         else {
             d.salesOther = parseFloat(d.Other_Sales) * 1000000;
         }
+        d.salesTotal = d.salesJPN + d.salesNA + d.salesEU + d.salesOther;
     });
 }
 
-//function that limits number of shown entries
-function limitEntries() {
-    var limitData = filteredData.filter(function(d,i){
-        return i < document.querySelector('#gamemax').value;
+// function that filters data based on min and max rank, inclusive.
+function filterRank(rankMin, rankMax) {
+
+    //TODO:sort by d.salesTotal, highest to lowest
+    filteredData.sort(function(d){
+        return d.salesTotal;
     });
-    return limitData;
+    console.log(filteredData);
+
+    var rankData = filteredData.filter(function(d,i){
+        return  i >= parseInt(rankMin)-1 && i <= parseInt(rankMax)-1;
+    });
+    return rankData;
 }
+// DELETE function that limits number of shown entries
+// function limitEntries() {
+//     var limitData = filteredData.filter(function(d,i){
+//         return i <= parseInt(rankMax)+1 && i >= parseInt(rankMin)-1;
+//     });
+//     return limitData;
+// }
 
 // function that takes in x and y scales for main bar graph and returns d3.scalelinear for both in a 2 element array.
 function setScale([dXmin, dXmax], [rXmin, rXmax], [dYmin, dYmax], [rYmin, rYmax]) {
@@ -255,11 +266,11 @@ function createStackedGraph() {
 // function that draws bars for a certain region
 function drawRegionBars(region) {
     var svg = d3.select("svg");
-    var barGrBars = svg.selectAll("#"+ region)
+    var barGrBars = svg.selectAll("."+ region)
         .data(filteredData);
     var barEnter = barGrBars.enter().append("rect")
-        .attr("id", region)
-        .attr("class", "barRect")
+        // .attr("id", region)
+        .attr("class", region)
         .attr("x", function(d) {
             return xScaleOld(d.rank);
         })
@@ -272,7 +283,7 @@ function drawRegionBars(region) {
             return yScaleOld(yVar);
         })
         .attr("width", function(d) {
-            return (graphDimensions.graphZoneWidth/rankRangePrev);
+            return (graphDimensions.graphZoneWidth/barRangePrev);
         })
         .attr("height", function(d) {
             return 0;
@@ -314,7 +325,7 @@ function drawRegionBars(region) {
                 return yScale(yVar);
             })
             .attr("width", function(d) {
-                return (graphDimensions.graphZoneWidth/rankRange);
+                return (graphDimensions.graphZoneWidth/barRange);
             })
             .attr("height", function(d) {
                 if (region == "JPN") {heightVar = d.JPNrect[1]-d.JPNrect[0];}

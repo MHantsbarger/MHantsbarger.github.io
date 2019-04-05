@@ -30,6 +30,7 @@
             </select>
         </div>
         <h1>Insert Coin to Continue</h1> 
+        <!-- collecting coins, business video games, "tycoon" games, high scores, -->
         <h2>Exploring the 16,600 top-selling video games from 1980-2016 (as of 10/26/2016)<br></h2>
         <h3>Visualization by Matthew Hantsbarger | Data collected by Gregory Smith 
             (<a href = "https://www.kaggle.com/gregorut/videogamesales#vgsales.csv">source</a>) </h3>
@@ -46,23 +47,17 @@
             Publisher (WIP): 
             <select>
                 <option value="AllPublishers">All Publishers</option> <!-- cut down to top 10? -->
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+
             </select> <br>
             Console (WIP): 
             <select>
                 <option value="AllConsoles">All Consoles</option> <!-- cut down to top 10? -->
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+
             </select><br>
             Genre (WIP): 
             <select>
                 <option value="AllGenres">All Genres</option> <!-- cut down to top 10? -->
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+
             </select><br>
             Regions: <br>
                 <input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
@@ -71,7 +66,6 @@
                 <input type="checkbox" id="otherToggle" name="OtherSelect" checked>Everywhere Else</option><br>
             Min rank: <input type="number" id ="rankmin" name="MinRank" value="1" min="1" max="16600"><br>
             Max rank: <input type="number" id ="rankmax" name="MaxRank" value="50" min="1" max="16600"><br>
-            Max Number of games displayed (1-100): <input type="number" id ="gamemax" name="graphmax" value="50" min="1" max="100"><br>
             <button type="button" onclick="update()">Show Data</button><br>
         </p>
         <!--Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>
