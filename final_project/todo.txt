@@ -1,20 +1,21 @@
 To do for next week:
     - DONE: Change svg region id to class
-    - Change rank to sort and rank data based on filtered data
+    - DONE: Change rank to sort and rank data based on filtered data
         - Filtering by year shouldn't leave gaps
-    - Add functionality of publisher, console, and genre filters
-        -500+ publishers, populate whole dropdown or just select top x?
-        - Want to dynamically add console key to console dropdown (ditto for Genre)
+    - DONE: Add functionality of publisher, console, and genre filters
+        - SHOW TOP 100: 500+ publishers, populate whole dropdown or just select top x?
+        - DONE: Want to dynamically add console key to console dropdown (ditto for Genre)
+
     - Add dynamic y scaling
     - Get boxes to remember previous location when performing animation transition.
+        - how to get boxes to remember themselves, not just shift from list of squares?
 
     - MINOR: Make BG less obviously tiled
     - MINOR: Begin to implement themes.
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
-    - sort function in filterRank not working. may be incorrect function
-    - how to get boxes to remember themselves, not just shift from list of squares?
+
 ------------------------------------------------------------------------------------------------
 
 4/4 goals:

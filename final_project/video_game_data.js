@@ -1,5 +1,6 @@
 // global variables
 var consoleMap;
+var realConsoleMap;
 var globalData; //whole dataset
 var filteredData; //filtered dataset for graph
 var graphDimensions;
@@ -19,6 +20,12 @@ d3.queue() //load and handle data
     .awaitAll(function(error,dataArray) {
         var data = dataArray[0];
         consoleMap = dataArray[1];
+        realConsoleMap = consoleMap.reduce(function(map, obj) {
+            map[obj.Acronym] = obj.Name;
+            return map;
+        }, {});
+        // console.log(realConsoleMap);
+
 // d3.csv("/data/Final_Project_Data/vgsales.csv", function(error, data) { //old way to load and handle data
 //     console.log("csv data error:", error);
     // console.log("csv contents:", data);
@@ -40,6 +47,7 @@ d3.queue() //load and handle data
             // console.log(d);
         }
     );
+    dropdownFill(data);
     globalData = data;
     filteredData = globalData;
 
@@ -64,11 +72,28 @@ function dropdownFill(data) {
         return d.publisher;
     })
     .entries(data);
-    console.log("publisher list:");
-    console.log(publisherList);
-
-    // TODO: sort by name alphabetically
-    // TODO: populate dropdown
+    // sort by name alphabetically
+    var cutPubList = publisherList.filter(function(d,i){
+        return i < 100;
+    });
+    var sortCutPubList = cutPubList.sort(function(a, b){
+        if (a.key > b.key) {
+            return 1;
+        }
+        if (b.key < a.key) {
+            return -1;
+        }
+        return 0;
+    });
+    // populate dropdown
+    var pubDropdown = document.getElementById("publisherDropdown");
+    for (i=0;i<sortCutPubList.length;i++) {
+        var opt = sortCutPubList[i].key;
+        var el = document.createElement("option");
+        el.textContent = String(opt);
+        el.value = String(opt);
+        pubDropdown.appendChild(el);
+    }
 
     // console
     var consoleList = d3.nest()
@@ -76,10 +101,27 @@ function dropdownFill(data) {
         return d.platform;
     })
     .entries(data);
-    console.log("console list:");
-    console.log(consoleList);
-
     //use consoleMap to correspond to name
+    var sortConsList = consoleList.sort(function(a, b){
+        if (a.key > b.key) {
+            return 1;
+        }
+        if (b.key < a.key) {
+            return -1;
+        }
+        return 0;
+    });
+    // populate dropdown
+    var consoleDropdown = document.getElementById("consoleDropdown");
+    for (i=0;i<sortConsList.length;i++) {
+        var opt = sortConsList[i].key;
+        var el = document.createElement("option");
+        // el.textContent = String(opt);
+        // console.log(realConsoleMap[opt]);
+        el.textContent = realConsoleMap[opt];
+        el.value = String(opt);
+        consoleDropdown.appendChild(el);
+    }
 
     // genre
     var genreList = d3.nest()
@@ -87,8 +129,25 @@ function dropdownFill(data) {
         return d.genre;
     })
     .entries(data);
-    console.log("genre list:");
-    console.log(genreList);
+    // sort by name alphabetically
+    var sortGenList = genreList.sort(function(a, b){
+        if (a.key > b.key) {
+            return 1;
+        }
+        if (b.key < a.key) {
+            return -1;
+        }
+        return 0;
+    });
+    // populate dropdown
+    var genreDropdown = document.getElementById("genreDropdown");
+    for (i=0;i<sortGenList.length;i++) {
+        var opt = sortGenList[i].key;
+        var el = document.createElement("option");
+        el.textContent = String(opt);
+        el.value = String(opt);
+        genreDropdown.appendChild(el);
+    }
 }
 
 // function that sets width and height of frame
@@ -136,14 +195,17 @@ function update() {
     barRangePrev = barRange; //holds previous rank for animation transition
     barRange = parseInt(rankMax) - parseInt(rankMin) + 1;
 
-    if (barRange > 500) { // only shows 500 bars at a time
-        barRange = 500;
+    if (barRange > 100) { // only shows 500 bars at a time
+        barRange = 100;
         rankMax =  parseInt(barRange) + parseInt(rankMin) - 1;
     }
 
 
     //filtering data functions
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
+    filteredData = filterPublisher(document.querySelector('#publisherDropdown'));
+    filteredData = filterGenre(document.querySelector('#genreDropdown'));
+    filteredData = filterConsole(document.querySelector('#consoleDropdown'));
     filterRegion();
     filteredData = filterRank(rankMin, rankMax);
     
@@ -196,13 +258,56 @@ function filterYear(yearMin,yearMax) {
     }
 }
 
-// UNUSED function that filters data based on publisher.
+// function that filters data based on publisher.
 function filterPublisher(Publisher) {
-    var pubData = filteredData.filter(function(d){
-        return d.publisher == Publisher;
-    });
-    return pubData;
+    publisherName = Publisher.options[Publisher.selectedIndex].value;
+    if (publisherName == "AllPublishers") {
+        // console.log("showing all");
+        return filteredData;
+    }
+    else {
+        // console.log("filtering publishers");
+        var pubData = filteredData.filter(function(d){
+            return d.publisher == publisherName;
+        });
+        return pubData;
+    } 
 }
+
+// function that filters data based on console.
+function filterConsole(Console) {
+    consoleName = Console.options[Console.selectedIndex].value;
+    console.log(consoleName);
+    if (consoleName == "AllConsoles") {
+        // console.log("showing all");
+        return filteredData;
+    }
+    else {
+        // console.log("filtering console");
+        var consData = filteredData.filter(function(d){
+            return d.platform == consoleName;
+        });
+        return consData;
+    }
+}
+
+// function that filters data based on genre.
+function filterGenre(Genre) {
+    genreName = Genre.options[Genre.selectedIndex].value;
+    if (genreName == "AllGenres") {
+        // console.log("showing all");
+        return filteredData;
+    }
+    else {
+        // console.log("filtering genre");
+        var genreData = filteredData.filter(function(d){
+            return d.genre == genreName;
+        });
+        return genreData;
+    }
+    
+}
+
 
 // function that filters data based on region
 function filterRegion() {
@@ -231,20 +336,20 @@ function filterRegion() {
         else {
             d.salesOther = parseFloat(d.Other_Sales) * 1000000;
         }
-        d.salesTotal = d.salesJPN + d.salesNA + d.salesEU + d.salesOther;
+        d.salesTotal = parseInt(d.salesJPN) + parseInt(d.salesNA) + parseInt(d.salesEU) + parseInt(d.salesOther);
     });
 }
 
 // function that filters data based on min and max rank, inclusive.
 function filterRank(rankMin, rankMax) {
 
-    //TODO: sort by d.salesTotal, highest to lowest
-    filteredData.sort(function(d){
-        return d.salesTotal;
+    // sort by d.salesTotal, highest to lowest
+    var sortedData = filteredData.sort(function(a,b){
+        return parseInt(b.salesTotal) - parseInt(a.salesTotal);
     });
-    console.log(filteredData);
+    //console.log(sortedData);
 
-    var rankData = filteredData.filter(function(d,i){
+    var rankData = sortedData.filter(function(d,i){
         return  i >= parseInt(rankMin)-1 && i <= parseInt(rankMax)-1;
     });
     return rankData;
@@ -281,8 +386,8 @@ function drawRegionBars(region) {
     var barEnter = barGrBars.enter().append("rect")
         // .attr("id", region)
         .attr("class", region)
-        .attr("x", function(d) {
-            return xScaleOld(d.rank);
+        .attr("x", function(d,i) {
+            return xScaleOld(parseInt(i)+1);
         })
         .attr("y", function(d) {
             // return yScale(1);
@@ -324,8 +429,8 @@ function drawRegionBars(region) {
                 .style("display", "none")
         })
         .transition().duration(1500)
-            .attr("x", function(d) {
-                return xScale(d.rank);
+            .attr("x", function(d,i) {
+                return xScale(parseInt(i)+1);
             })
             .attr("y", function(d) {
                 if (region == "JPN") {yVar = d.JPNrect[1]; }

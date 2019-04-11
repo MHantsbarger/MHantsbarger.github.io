@@ -1,32 +1,32 @@
-Name,Acronym
-3DO Interactive Multiplayer,3DO
-3Ds - Nintendo 3DS,3DS
-Atari 2600,2600
-DS - Nintendo Dual Screen,DS
-Game Boy,GB
-Game Gear,GG
-GameCube,GC
-GBA - Game Boy Advanced,GBA
-Neo Geo,NG
-NES - Nintendo Entertainment System,NES
-Nintendo 64,N64
-PC - Personal Computer,PC
-PC-FX,PCFX
-PlayStation,PS
-PlayStation Vita,PSV
-PS2 - PlayStation 2,PS2
-PS3 - PlayStation 3,PS3
-PS4 - PlayStation 4,PS4
-PSP - PlayStation Portable,PSP
-Sega CD,SCD
-Sega Dreamcast,DC
-Sega Genesis,GEN
-Sega Saturn,SAT
-SNES - Super Nintendo Entertainment System,SNES
-TurboGrafx-16,TG16
+Acronym,Name
+3DO,3DO Interactive Multiplayer
+3DS,3Ds - Nintendo 3DS
+2600,Atari 2600
+DS,DS - Nintendo Dual Screen
+GB,Game Boy
+GG,Game Gear
+GC,GameCube
+GBA,GBA - Game Boy Advanced
+NG,Neo Geo
+NES,NES - Nintendo Entertainment System
+N64,Nintendo 64
+PC,PC - Personal Computer
+PCFX,PC-FX
+PS,PlayStation
+PSV,PlayStation Vita
+PS2,PS2 - PlayStation 2
+PS3,PS3 - PlayStation 3
+PS4,PS4 - PlayStation 4
+PSP,PSP - PlayStation Portable
+SCD,Sega CD
+DC,Sega Dreamcast
+GEN,Sega Genesis
+SAT,Sega Saturn
+SNES,SNES - Super Nintendo Entertainment System
+TG16,TurboGrafx-16
 Wii,Wii
 WiiU,WiiU
-WonderSwan,WS
-Xbox,XB
-Xbox 360,X360
-Xbox One,XOne
+WS,WonderSwan
+XB,Xbox
+X360,Xbox 360
+XOne,Xbox One
