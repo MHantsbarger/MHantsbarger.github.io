@@ -1,10 +1,23 @@
 To do for next week:
-    - Add more detail to tooltips
-    - Begin to implement themes.
+    - DONE: get boxes to remember previous location when performing animation transition
+    - DONE: Add more detail to tooltips
+        - DONE: constant width
+        - DONE: Add publisher, console, genre, total sales worldwide and region
+    - IN PROGRESS: Add key for region color
     - Rework rank to be more parsible?
+    - Implement themes.
+        - What should change:
+            - Background image
+            - Frame and tooltip background color
+            - Main Fonts (style, size and color)
+            - Secondary Fonts (style, size and color)
+    - IN PROGRESS: Tooltip and sidebar formatting.
 
     - MINOR: Make BG less obviously tiled
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
+
+Issues:
+    -graph has some weird display bugs when changing minRank to high values
 
 4/11 goals:
     - DONE: Change svg region id to class
@@ -21,8 +34,6 @@ To do for next week:
     - MINOR: Begin to implement themes.
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
-Issues:
-    -graph has some weird display bugs when changing minRank to high values
 ------------------------------------------------------------------------------------------------
 
 4/4 goals:

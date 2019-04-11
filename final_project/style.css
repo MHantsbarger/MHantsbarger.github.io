@@ -37,14 +37,16 @@ h4 { /*tooltip title*/
 }
 h5 { /*tooltip text*/
     font-family: 'Roboto', sans-serif;
+    font-weight: normal;
     /* font-family: 'Press Start 2P', cursive; */
     font-size: 16px;
     margin:0px;
     text-align:center;
 }
 #tooltip { /*tooltip box properties*/
+    width:200px;
     fill-opacity: 0.95;
-    border: 1px solid black;
+    border: 1px solid grey;
     background-color: white;
     background-color: rgba(255,255,255,0.90);
     display: none;
@@ -76,14 +78,21 @@ a:hover { /* mouseover link */
     color: red;
 }
 .sideBar { 
-    font-family: Verdana, sans-serif;
+    font-family: 'Roboto', sans-serif;
     position: absolute;
-    font-size: 10px;
-    margin:3;
+    font-size: 16px;
+    margin:3px;
     margin-left:3px;
+    line-height: 22px;
     top:140px;
     left:40px;
     width: 250px;
+}
+.dropdown {
+    width: 242px;
+    margin-bottom:3px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
 }
 svg { /*svg formatting*/
     position:absolute;

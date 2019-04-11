@@ -15,6 +15,10 @@
         <svg>
             <rect class ="framerect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.9"/>
             <rect class ="sidebarrect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.5"/>
+            <rect class ="colorkeyrect" x="115px" y="378px" width="16px" height="16px" fill="red" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="172px" y="400px" width="16px" height="16px" fill="blue" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="120px" y="422px" width="16px" height="16px" fill="orange" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="184px" y="444px" width="16px" height="16px" fill="green" stroke-width="1" stroke="grey"/>
             <!-- <rect x="5px" y="620px" width="98%" height="300px" fill="white" stroke-width="1" stroke="black"/> -->
             <!-- <rect x="300px" y="120px" width="98%" height="460px" fill="white" stroke-width="1" stroke="black"/> -->
             <g id="yAxis" transform="translate(340,0)"></g>
@@ -23,10 +27,13 @@
         <div id="themeButton">
             Theme (WIP):
             <select>
-                <option value="Theme1">Pixel</option> <!-- cut down to top 10? -->
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
+                <option value="Classic">Classic</option>
+                <option value="Pixel">Ye Olde</option>
+                <option value="Doom">Boom and Gloom</option>
+                <option value="Bright">Gem</option>
+                <option value="Fantasy">Swords and Sorcery</option>
+                <option value="Scifi">Collect the Stars</option>
+
             </select>
         </div>
         <h1>Insert Coin to Continue</h1> 
@@ -45,21 +52,22 @@
                 <input type="text" id="pubmatch" name="PublisherName"> <input type="reset" name="Clear">
             <br> -->
             Publisher: 
-            <select id="publisherDropdown">
+            <select class = "dropdown" id="publisherDropdown">
                 <option value="AllPublishers">All Publishers</option> <!-- cut down to top 100 -->
 
             </select> <br>
-            Console: 
-            <select id ="consoleDropdown">
-                <option value="AllConsoles">All Consoles</option>
+            Platform: 
+            <select class = "dropdown" id ="consoleDropdown">
+                <option value="AllConsoles">All Platforms</option>
 
             </select><br>
             Genre: 
-            <select id ="genreDropdown">
+            <select class = "dropdown" id ="genreDropdown">
                 <option value="AllGenres">All Genres</option>
 
             </select><br>
             Regions: <br>
+            <!-- <span style="width:16px;height:16px;background-color:red;">&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
                 <input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
                 <input type="checkbox" id="naToggle" name="NorthAmericaSelect" checked>North America</option><br>
                 <input type="checkbox" id="euToggle" name="EuropeSelect" checked>Europe</option><br>

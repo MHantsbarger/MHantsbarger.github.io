@@ -73,10 +73,11 @@ function dropdownFill(data) {
         return d.publisher;
     })
     .entries(data);
-    // sort by name alphabetically
+    // only show top 100 publishers
     var cutPubList = publisherList.filter(function(d,i){
-        return i < 100;
+        return i < publisherList.length+1;
     });
+    // sort by name alphabetically
     var sortCutPubList = cutPubList.sort(function(a, b){
         if (a.key > b.key) {
             return 1;
@@ -384,7 +385,9 @@ function createStackedGraph() {
 function drawRegionBars(region) {
     var svg = d3.select("svg");
     var barGrBars = svg.selectAll("."+ region)
-        .data(filteredData);
+        .data(filteredData,function(d){
+            return d.rank+region; //keep id of each box based on total rank and region for smooth transition
+        });
     var barEnter = barGrBars.enter().append("rect")
         // .attr("id", region)
         .attr("class", region)
@@ -423,16 +426,19 @@ function drawRegionBars(region) {
             d3.select("#tooltip")
                 .style("display", "block")
                 .html("<h4>" + d.name + "</h4><h5>" 
-                        + d.platform + "<br/>"
-                        + d3.format("(.3s")(d["sales" + region])+ " sales</h5>")
-                .style("left", mouse[0] - 140 + "px")
-                .style("top", mouse[1] - 130 + "px");
+                        + "Publisher: " + d.publisher + "<br/>"
+                        + "Platform: " + d.platform + "<br/>"
+                        + "Genre: " + d.genre + "<br/>"
+                        + d3.format("(.3s")(d["sales" + region])+ " " + region +" Sales<br/>"
+                        + d3.format("(.3s")(d["salesTotal"])+ " " + " Global Sales</h5>")
+                .style("left", mouse[0] - 210 + "px")
+                .style("top", mouse[1] - 120 + "px");
         })
         .on("mouseout", function(d) { //hide tooltip
             d3.select("#tooltip")
                 .style("display", "none")
         })
-        .transition().duration(1500)
+        .transition().duration(2000)
             .attr("x", function(d,i) {
                 return xScale(parseInt(i)+1);
             })
@@ -463,7 +469,7 @@ function drawRegionBars(region) {
             .attr("stroke","grey")
             .attr("stroke-width","1px");
     barGrBars.exit()
-        .transition().duration(1000)
+        .transition().duration(1500)
             .attr("y", function(d) {
                 // return yScale(1);
                 if (region == "JPN") {yVar = d.JPNrect[0]; }
