@@ -12,6 +12,7 @@ var xScale;
 var xScaleOld;
 var yScale;
 var yScaleOld;
+var maxYval;
 
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.queue() //load and handle data
@@ -210,9 +211,10 @@ function update() {
     filteredData = filterRank(rankMin, rankMax);
     
     // set up scale
+    maxYval = (filteredData[0].salesTotal) * 1.05;
     var graphScales = setScale(
-        [rankMin,(parseInt(rankMax)+1)], [350, 350 + graphDimensions.graphZoneWidth],
-        [0, 90000000], [graphDimensions.graphZoneHeight + 140, 140]);
+        [1,(parseInt(filteredData.length)+1)], [350, 350 + graphDimensions.graphZoneWidth],
+        [0, maxYval], [graphDimensions.graphZoneHeight + 140, 140]);
     xScaleOld = xScale;
     xScale = graphScales[0];
     yScaleOld = yScale;
@@ -409,7 +411,9 @@ function drawRegionBars(region) {
             else if (region == "EU") {color = "orange";}
             else {color = "green";}
             return color;
-        });
+        })
+        .attr("stroke","grey")
+        .attr("stroke-width","1px");
     barGrBars.merge(barEnter) 
         .on("click", function(d) {
             console.log(d.name);
@@ -455,7 +459,9 @@ function drawRegionBars(region) {
                 else if (region == "EU") {color = "orange";}
                 else {color = "green";}
                 return color;
-            });
+            })
+            .attr("stroke","grey")
+            .attr("stroke-width","1px");
     barGrBars.exit()
         .transition().duration(1000)
             .attr("y", function(d) {

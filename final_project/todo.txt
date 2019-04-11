@@ -1,12 +1,19 @@
 To do for next week:
+    - Add more detail to tooltips
+    - Begin to implement themes.
+    - Rework rank to be more parsible?
+
+    - MINOR: Make BG less obviously tiled
+    - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
+
+4/11 goals:
     - DONE: Change svg region id to class
     - DONE: Change rank to sort and rank data based on filtered data
         - Filtering by year shouldn't leave gaps
     - DONE: Add functionality of publisher, console, and genre filters
         - SHOW TOP 100: 500+ publishers, populate whole dropdown or just select top x?
         - DONE: Want to dynamically add console key to console dropdown (ditto for Genre)
-
-    - Add dynamic y scaling
+    - DONE: Add dynamic y scaling
     - Get boxes to remember previous location when performing animation transition.
         - how to get boxes to remember themselves, not just shift from list of squares?
 
@@ -15,7 +22,7 @@ To do for next week:
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?
 
 Issues:
-
+    -graph has some weird display bugs when changing minRank to high values
 ------------------------------------------------------------------------------------------------
 
 4/4 goals:
