@@ -28,14 +28,14 @@ h3 { /*credits*/
     margin:5px;
     text-align:center;
 }
-h4 { /*tooltip title*/
+#tooltipTitle { /*tooltip title*/
     font-family: 'Press Start 2P', cursive;
     font-size: 14px;
     margin:1px;
     margin-left:5px;
     text-align:center;
 }
-h5 { /*tooltip text*/
+#tooltipText { /*tooltip text*/
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
     /* font-family: 'Press Start 2P', cursive; */
@@ -91,8 +91,8 @@ a:hover { /* mouseover link */
 .dropdown {
     width: 242px;
     margin-bottom:3px;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-size: 16px; */
 }
 svg { /*svg formatting*/
     position:absolute;

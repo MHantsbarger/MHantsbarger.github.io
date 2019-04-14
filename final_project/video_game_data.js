@@ -13,6 +13,7 @@ var xScaleOld;
 var yScale;
 var yScaleOld;
 var maxYval;
+var themeID = "Classic";
 
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.queue() //load and handle data
@@ -425,7 +426,7 @@ function drawRegionBars(region) {
             var mouse = d3.mouse(this);
             d3.select("#tooltip")
                 .style("display", "block")
-                .html("<h4>" + d.name + "</h4><h5>" 
+                .html("<h4 id=&quot;tooltipTitle&quot;>" + d.name + "</h4><h5 id=&quot;tooltipText&quot;>" 
                         + "Publisher: " + d.publisher + "<br/>"
                         + "Platform: " + d.platform + "<br/>"
                         + "Genre: " + d.genre + "<br/>"
@@ -485,4 +486,54 @@ function drawRegionBars(region) {
             .remove();
     var barGrBars = svg.selectAll("#"+ region);
     return barGrBars;
+}
+
+function changeTheme() {
+    // console.log("It's alive!!!");
+    themeID = document.querySelector('#themeSelect').value;
+    if ( themeID == "Classic") {
+        console.log("Classic Theme Selected.");
+        document.getElementById("mainTitle").style.fontFamily = "'Press Start 2P', cursive";
+        document.getElementById("mainTitle").style.letterSpacing = "normal";
+        document.getElementById("mainTitle").style.fontSize = "32px";
+        document.getElementById("mainTitle").style.margin = "5px";
+        document.getElementById("mainTitle").style.marginTop = "20px";
+        document.getElementById("subtitle").style.fontFamily = "'Roboto', sans-serif";
+        document.getElementById("subtitle").style.fontSize = "18px";
+        document.getElementById("subtitle").style.fontStyle = "italic";
+        document.getElementById("subtitle").style.margin = "0px";
+        document.getElementById("credits").style.fontFamily = "'Roboto', sans-serif";
+        document.getElementById("credits").style.fontSize = "12px";
+        document.getElementById("credits").style.margin = "5px";
+
+        document.getElementById("tooltipTitle").style.fontFamily = "'Press Start 2P', cursivee";
+        // font-family: 'Press Start 2P', cursive;
+        // font-family: 'Roboto', sans-serif;
+    }
+    if ( themeID == "Fantasy") {
+        console.log("Fantasy Theme Selected.");
+        document.getElementById("mainTitle").style.fontFamily = "'UnifrakturMaguntia', cursive";
+        // document.getElementById("mainTitle").style.letterSpacing = "8px";
+        document.getElementById("mainTitle").style.fontSize = "55px";
+        document.getElementById("mainTitle").style.margin = "0px";
+
+        document.getElementById("subtitle").style.fontFamily = "'Merienda One', cursive";
+        document.getElementById("subtitle").style.fontSize = "18px";
+        document.getElementById("subtitle").style.fontStyle = "normal";
+        document.getElementById("subtitle").style.margin = "0px";
+
+        document.getElementById("credits").style.fontFamily = "'Merienda One', cursive";
+        document.getElementById("credits").style.fontSize = "12px";
+        document.getElementById("credits").style.fontStyle = "normal";
+
+        document.getElementById("tooltipTitle").style.fontFamily = "'UnifrakturMaguntia', cursive";
+        // font-family: 'Merienda One', cursive;
+        // font-family: 'UnifrakturMaguntia', cursive;
+    }
+    
+    
+    // font-family: 'Sigmar One', cursive;
+
+    // font-family: 'Orbitron', sans-serif;
+    // font-family: 'Righteous', cursive;
 }

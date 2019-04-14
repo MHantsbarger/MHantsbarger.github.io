@@ -3,7 +3,7 @@ To do for next week:
     - DONE: Add more detail to tooltips
         - DONE: constant width
         - DONE: Add publisher, console, genre, total sales worldwide and region
-    - IN PROGRESS: Add key for region color
+    - DONE: Add key for region color
     - Rework rank to be more parsible?
     - Implement themes.
         - What should change:
