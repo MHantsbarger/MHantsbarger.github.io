@@ -5,9 +5,11 @@ var globalData; //whole dataset
 var filteredData; //filtered dataset for graph
 var graphDimensions;
 var rankMin = document.querySelector('#rankmin').value;
-var rankMax = document.querySelector('#rankmax').value;
-var barRange = parseInt(rankMax) - parseInt(rankMin) +1;
-var barRangePrev = barRange;
+// var rankMax = document.querySelector('#rankmax').value;
+var numDisp = document.querySelector('#numdisp').value;
+var numDispPrev = numDisp;
+// var barRange = parseInt(rankMax) - parseInt(rankMin) +1;
+// var barRangePrev = barRange;
 var xScale;
 var xScaleOld;
 var yScale;
@@ -55,7 +57,7 @@ d3.queue() //load and handle data
 
     graphDimensions = updateFrameDimensions();
     var graphScales = setScale(
-        [rankMin,(parseInt(rankMax)+1)], [350, 350 + graphDimensions.graphZoneWidth],
+        [1,(parseInt(numDisp)+1)], [350, 350 + graphDimensions.graphZoneWidth],
         [0, 90000000], [graphDimensions.graphZoneHeight + 140, 140]);
     xScale = graphScales[0];
     xScaleOld = xScale;
@@ -194,15 +196,23 @@ function update() {
     
     //setting up rank values
     rankMin = document.querySelector('#rankmin').value;
-    rankMax = document.querySelector('#rankmax').value;
-    barRangePrev = barRange; //holds previous rank for animation transition
-    barRange = parseInt(rankMax) - parseInt(rankMin) + 1;
-
-    if (barRange > 100) { // only shows 500 bars at a time
-        barRange = 100;
-        rankMax =  parseInt(barRange) + parseInt(rankMin) - 1;
+    // rankMax = document.querySelector('#rankmax').value;
+    // barRangePrev = barRange; //holds previous rank for animation transition
+    if (numDisp > 100) { // only shows 100 bars at a time
+        numDisp = 100;
     }
+    else if (numDisp < 1) {
+        numDisp = 1;
+    }
+    numDispPrev = numDisp;
+    numDisp = document.querySelector('#numdisp').value;
+    // barRange = parseInt(rankMax) - parseInt(rankMin) + 1;
 
+    // if (barRange > 100) { // only shows 500 bars at a time
+    //     barRange = 100;
+    //     rankMax =  parseInt(barRange) + parseInt(rankMin) - 1;
+    // }
+    
 
     //filtering data functions
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
@@ -210,7 +220,7 @@ function update() {
     filteredData = filterGenre(document.querySelector('#genreDropdown'));
     filteredData = filterConsole(document.querySelector('#consoleDropdown'));
     filterRegion();
-    filteredData = filterRank(rankMin, rankMax);
+    filteredData = filterRank();
     
     // set up scale
     maxYval = (filteredData[0].salesTotal) * 1.05;
@@ -345,7 +355,7 @@ function filterRegion() {
 }
 
 // function that filters data based on min and max rank, inclusive.
-function filterRank(rankMin, rankMax) {
+function filterRank() {
 
     // sort by d.salesTotal, highest to lowest
     var sortedData = filteredData.sort(function(a,b){
@@ -354,7 +364,8 @@ function filterRank(rankMin, rankMax) {
     //console.log(sortedData);
 
     var rankData = sortedData.filter(function(d,i){
-        return  i >= parseInt(rankMin)-1 && i <= parseInt(rankMax)-1;
+        return i < parseInt(numDisp);
+        // return  i >= parseInt(rankMin)-1 && i <= parseInt(rankMax)-1;
     });
     return rankData;
 }
@@ -404,7 +415,7 @@ function drawRegionBars(region) {
             return yScaleOld(yVar);
         })
         .attr("width", function(d) {
-            return (graphDimensions.graphZoneWidth/barRangePrev);
+            return (graphDimensions.graphZoneWidth/numDispPrev);
         })
         .attr("height", function(d) {
             return 0;
@@ -451,7 +462,7 @@ function drawRegionBars(region) {
                 return yScale(yVar);
             })
             .attr("width", function(d) {
-                return (graphDimensions.graphZoneWidth/barRange);
+                return (graphDimensions.graphZoneWidth/numDisp);
             })
             .attr("height", function(d) {
                 if (region == "JPN") {heightVar = d.JPNrect[1]-d.JPNrect[0];}
