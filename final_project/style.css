@@ -1,6 +1,7 @@
 /* style sheet for index.html */
 body{ /*html body*/
     background-image: url("VG-BG-2.jpg");
+    /* background-image: url("fantasyparchment2.jpg"); */
     overflow:hidden;
 }
 h1 { /* title*/
@@ -8,6 +9,7 @@ h1 { /* title*/
     font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 32px;
+    text-shadow: 2px 2px #000000;
     margin:5px;
     margin-top:20px;
     text-align:center;
@@ -17,6 +19,7 @@ h2 { /*subtitle*/
     font-style: italic;
     color: white;
     font-size: 18px;
+    text-shadow: 2px 2px #000000;
     margin:0;
     text-align:center;
 }
@@ -25,6 +28,7 @@ h3 { /*credits*/
     /* font-style: italic; */
     color: white;
     font-size: 12px;
+    text-shadow: 2px 2px #000000;
     margin:5px;
     text-align:center;
 }
@@ -55,6 +59,7 @@ h3 { /*credits*/
 #backButton{
     color: white;
     font-size: 16px;
+    text-shadow: 2px 2px #000000;
     top: 0;
     left: 0;
     margin: 5px;
@@ -63,6 +68,7 @@ h3 { /*credits*/
 #themeButton {
     color: white;
     font-size: 16px;
+    text-shadow: 2px 2px #000000;
     top: 0;
     right: 0;
     margin: 5px;

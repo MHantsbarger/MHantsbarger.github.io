@@ -504,6 +504,7 @@ function changeTheme() {
     themeID = document.querySelector('#themeSelect').value;
     if ( themeID == "Classic") {
         console.log("Classic Theme Selected.");
+        document.getElementById("body").style.backgroundImage = "url('VG-BG-2.jpg')";
         document.getElementById("mainTitle").style.fontFamily = "'Press Start 2P', cursive";
         document.getElementById("mainTitle").style.letterSpacing = "normal";
         document.getElementById("mainTitle").style.fontSize = "32px";
@@ -523,6 +524,7 @@ function changeTheme() {
     }
     if ( themeID == "Fantasy") {
         console.log("Fantasy Theme Selected.");
+        document.getElementById("body").style.backgroundImage = "url('fantasyparchment2.jpg')";
         document.getElementById("mainTitle").style.fontFamily = "'UnifrakturMaguntia', cursive";
         // document.getElementById("mainTitle").style.letterSpacing = "8px";
         document.getElementById("mainTitle").style.fontSize = "55px";
