@@ -1,5 +1,6 @@
 /* style sheet for index.html */
 body{ /*html body*/
+    background-color: #000000;
     background-image: url("VG-BG-2.jpg");
     /* background-image: url("fantasyparchment2.jpg"); */
     overflow:hidden;
