@@ -169,17 +169,17 @@ function updateFrameDimensions() {
     graphZoneWidth = frameWidth - 350;
 
     var svg = d3.select("svg");
-    var frameRect = svg.selectAll(".framerect");
+    var frameRect = svg.selectAll("#framerect");
     frameRect
-        .attr("class", "framerect")
+        .attr("id", "framerect")
         .attr("x", 20)
         .attr("y", 120)
         .attr("width", frameWidth)
         .attr("height", frameHeight);
 
-    var sidebarRect = svg.selectAll(".sidebarrect");
+    var sidebarRect = svg.selectAll("#sidebarrect");
     sidebarRect
-        .attr("class", "sidebarrect")
+        .attr("id", "sidebarrect")
         .attr("x", 40)
         .attr("y", 140)
         .attr("width", sidebarWidth)

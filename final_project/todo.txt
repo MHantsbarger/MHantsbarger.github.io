@@ -4,14 +4,14 @@ To do for next week:
         - DONE: constant width
         - DONE: Add publisher, console, genre, total sales worldwide and region
     - DONE: Add key for region color
-    - Rework rank to be more parsible?
+    - DONE: Rework rank to be more parsible?
     - Implement themes.
         - What should change:
             - Background image
             - Frame and tooltip background color
             - Main Fonts (style, size and color)
             - Secondary Fonts (style, size and color)
-    - IN PROGRESS: Tooltip and sidebar formatting.
+    - DONE: Tooltip and sidebar formatting.
 
     - MINOR: Make BG less obviously tiled
     - TERTIARY: Width/height/positioning in CSS and pass to js for graph scaling?

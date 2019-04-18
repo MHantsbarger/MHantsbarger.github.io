@@ -118,11 +118,10 @@ body.Fantasy #tooltipText {
 
 body.Scifi { /*SCIFI THEME*/
     background-color: #000000;
-    background-image: url("VisionLightsBackground.jpg");
-    /* background-image: url("space.jpg"); */
+    background-image: url("space.jpg");
     
     overflow:hidden;
-    height: 150%; 
+    height: 100%; 
     /* background-position: center; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -184,7 +183,8 @@ body.Scifi #tooltipText {
 
 body.Doom { /*DOOM THEME*/
     background-color: #000000;
-    /* background-image: url("VisionLightsBackground.jpg"); */
+    /* background is modified image obtained from https://thetrove.net/ */
+    background-image: url("MorgueFloor1a.jpg");
     overflow:hidden;
 }
 body.Doom #mainTitle {
@@ -241,14 +241,20 @@ body.Doom #tooltipText {
     margin:0px;
     text-align:center;
 }
+/* body.Doom #framerect {
+    fill: black;
+    stroke-width: 1px;
+    stroke: grey;
+    fill-opacity:0.5;
+} */
 
 body.Bright { /*BRIGHT THEME*/
     background-color: #000000;
-    /* background-image: url("VisionLightsBackground.jpg"); */
+    background-image: url("gembg2.jpg");
     overflow:hidden;
 }
 body.Bright #mainTitle {
-    font-Family: 'UnifrakturMaguntia', cursive;
+    font-Family: 'Sniglet', cursive;
     color: white;
     font-size: 52px;
     font-weight:bold;
@@ -258,7 +264,7 @@ body.Bright #mainTitle {
     text-align:center;
 }
 body.Bright #subtitle {
-    font-family: 'Merienda One', cursive;
+    font-family: 'Cherry Swash', cursive;
     font-style: normal;
     color: white;
     font-size: 18px;
@@ -267,7 +273,7 @@ body.Bright #subtitle {
     text-align:center;
 }
 body.Bright #credits {
-    font-family: 'Merienda One', cursive;
+    font-family: 'Cherry Swash', cursive;
     color: white;
     font-size: 12px;
     text-shadow: 2px 2px #000000;
@@ -275,9 +281,9 @@ body.Bright #credits {
     text-align:center;
 }
 body.Bright #sideBar { 
-    font-family: 'Merienda One', cursive;
+    font-family: 'Cherry Swash', cursive;
     position: absolute;
-    font-size: 15px;
+    font-size: 17px;
     margin:3px;
     margin-left:3px;
     line-height: 22px;
@@ -286,7 +292,7 @@ body.Bright #sideBar {
     width: 250px;
 }
 body.Bright #tooltipTitle {
-    font-family: 'Merienda One', cursive;
+    font-family: 'Cherry Swash', cursive;
     font-weight: bold;
     font-size: 16px;
     margin:1px;
@@ -294,7 +300,7 @@ body.Bright #tooltipTitle {
     text-align:center;
 }
 body.Bright #tooltipText {
-    font-family: 'Merienda One', cursive;
+    font-family: 'Cherry Swash', cursive;
     font-weight: normal;
     font-style: normal;
     font-size: 14px;
