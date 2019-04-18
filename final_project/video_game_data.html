@@ -18,7 +18,7 @@
             <rect class ="framerect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.9"/>
             <rect class ="sidebarrect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.5"/>
             <rect class ="colorkeyrect" x="115px" y="353px" width="16px" height="16px" fill="red" stroke-width="1" stroke="grey"/>
-            <rect class ="colorkeyrect" x="172px" y="375px" width="16px" height="16px" fill="blue" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="174px" y="375px" width="16px" height="16px" fill="blue" stroke-width="1" stroke="grey"/>
             <rect class ="colorkeyrect" x="120px" y="397px" width="16px" height="16px" fill="orange" stroke-width="1" stroke="grey"/>
             <rect class ="colorkeyrect" x="184px" y="419px" width="16px" height="16px" fill="green" stroke-width="1" stroke="grey"/>
             <!-- <rect x="5px" y="620px" width="98%" height="300px" fill="white" stroke-width="1" stroke="black"/> -->
@@ -31,19 +31,20 @@
             <select id="themeSelect" onchange="changeTheme()">
                 <option value="Classic">In Control</option>
                 <option value="Fantasy">Out of Mana</option>
+                <option value="Scifi">Laser Highway</option>
                 <option value="Doom">Boss Battle</option>
                 <option value="Bright">Gem Swap</option>
             </select>
         </div>
-        <h1 id ="mainTitle">Insert Coin to Continue</h1> 
+        <div id ="mainTitle">Insert Coin to Continue</div> 
         <!-- name ideas: collecting coins, business video games, "tycoon" games, high scores, -->
-        <h2 id ="subtitle">Exploring the 16,600 top-selling video games from 1980-2016 (as of 10/26/2016)<br></h2>
-        <h3 id ="credits">Visualization by Matthew Hantsbarger | Data collected by Gregory Smith 
-            (<a href = "https://www.kaggle.com/gregorut/videogamesales#vgsales.csv">source</a>) </h3>
+        <div id ="subtitle">Exploring the 16,600 top-selling video games from 1980-2016 (as of 10/26/2016)<br></div>
+        <div id ="credits">Visualization by Matthew Hantsbarger | Data collected by Gregory Smith 
+            (<a href = "https://www.kaggle.com/gregorut/videogamesales#vgsales.csv">source</a>) </div>
         <!--Sidebar containing filters for graph.<br/><br/>
             Top part contains "presets"<br/><br/>
             Lower section contains discrete filters.<br/><br/> -->
-        <p class=sideBar id="sideBar">
+        <p id="sideBar">
             Year Range:<br>
                 <input required type="number" id="yearmin" name="MinYear" value="1980" min="1980" max="2016" style="width:80px">
                  - <input required type="number" id="yearmax" name="MaxYear" value="2016" min="1980" max="2016" style="width:80px"><br>

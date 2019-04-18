@@ -1,12 +1,27 @@
-/* style sheet for index.html */
-body{ /*html body*/
+/* style sheet for video_game_data.html */
+body.Classic { /*html body*/
     background-color: #000000;
     background-image: url("VG-BG-2.jpg");
-    /* background-image: url("fantasyparchment2.jpg"); */
     overflow:hidden;
 }
-h1 { /* title*/
-    /* font-family: Verdana, sans-serif; */
+body.Fantasy {
+    background-color: #000000;
+    background-image: url("fantasyparchment2.jpg");
+    overflow:hidden;
+}
+body.Scifi {
+    background-color: #000000;
+    background-image: url("VisionLightsBackground.jpg");
+    /* background-image: url("Spaaaace.png"); */
+    
+    overflow:hidden;
+    height: 150%; 
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body.Classic #mainTitle { /* title */
     font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 32px;
@@ -15,39 +30,164 @@ h1 { /* title*/
     margin-top:20px;
     text-align:center;
 }
-h2 { /*subtitle*/
+body.Fantasy #mainTitle {
+    font-Family: 'UnifrakturMaguntia', cursive;
+    color: white;
+    font-size: 52px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+body.Scifi #mainTitle {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 52px;
+    font-weight:bold;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+
+
+body.Classic #subtitle { /*subtitle*/
     font-family: 'Roboto', sans-serif;
     font-style: italic;
     color: white;
     font-size: 18px;
     text-shadow: 2px 2px #000000;
-    margin:0;
+    margin:0px;
     text-align:center;
 }
-h3 { /*credits*/
+body.Fantasy #subtitle {
+    font-family: 'Merienda One', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+body.Scifi #subtitle {
+    font-family: 'Righteous', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+
+body.Classic #credits { /*credits*/
     font-family: 'Roboto', sans-serif;
-    /* font-style: italic; */
     color: white;
     font-size: 12px;
     text-shadow: 2px 2px #000000;
     margin:5px;
     text-align:center;
 }
-#tooltipTitle { /*tooltip title*/
-    font-family: 'Press Start 2P', cursive;
-    font-size: 14px;
+body.Fantasy #credits {
+    font-family: 'Merienda One', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
+}
+body.Scifi #credits {
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
+}
+
+body.Classic #sideBar { 
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    font-size: 16px;
+    margin:3px;
+    margin-left:3px;
+    line-height: 22px;
+    top:140px;
+    left:40px;
+    width: 250px;
+}
+body.Fantasy #sideBar { 
+    font-family: 'Merienda One', cursive;
+    position: absolute;
+    font-size: 15px;
+    margin:3px;
+    margin-left:3px;
+    line-height: 22px;
+    top:140px;
+    left:40px;
+    width: 250px;
+}
+body.Scifi #sideBar { 
+    font-family: 'Righteous', cursive;
+    position: absolute;
+    font-size: 16px;
+    margin:3px;
+    margin-left:3px;
+    line-height: 22px;
+    top:140px;
+    left:40px;
+    width: 250px;
+}
+
+
+body.Classic #tooltipTitle { /*tooltip title*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    font-size: 18px;
     margin:1px;
     margin-left:5px;
     text-align:center;
 }
-#tooltipText { /*tooltip text*/
+body.Fantasy #tooltipTitle {
+    font-family: 'Merienda One', cursive;
+    font-weight: bold;
+    font-size: 16px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+body.Scifi #tooltipTitle {
+    font-family: 'Righteous', cursive;
+    font-weight: bold;
+    font-size: 16px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+
+body.Classic #tooltipText { /*tooltip text*/
     font-family: 'Roboto', sans-serif;
     font-weight: normal;
-    /* font-family: 'Press Start 2P', cursive; */
     font-size: 16px;
     margin:0px;
     text-align:center;
 }
+body.Fantasy #tooltipText {
+    font-family: 'Merienda One', cursive;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    margin:0px;
+    text-align:center;
+}
+body.Scifi #tooltipText {
+    font-family: 'Righteous', cursive;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    margin:0px;
+    text-align:center;
+}
+
 #tooltip { /*tooltip box properties*/
     width:200px;
     fill-opacity: 0.95;
@@ -84,22 +224,9 @@ a:visited { /* visited link */
 a:hover { /* mouseover link */
     color: red;
 }
-.sideBar { 
-    font-family: 'Roboto', sans-serif;
-    position: absolute;
-    font-size: 16px;
-    margin:3px;
-    margin-left:3px;
-    line-height: 22px;
-    top:140px;
-    left:40px;
-    width: 250px;
-}
 .dropdown {
     width: 242px;
     margin-bottom:3px;
-    /* font-family: 'Roboto', sans-serif; */
-    /* font-size: 16px; */
 }
 svg { /*svg formatting*/
     position:absolute;

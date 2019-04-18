@@ -16,6 +16,7 @@ var yScale;
 var yScaleOld;
 var maxYval;
 var themeID = "Classic";
+d3.select("body").attr("class", "Classic");
 
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.queue() //load and handle data
@@ -437,12 +438,12 @@ function drawRegionBars(region) {
             var mouse = d3.mouse(this);
             d3.select("#tooltip")
                 .style("display", "block")
-                .html("<h4 id=&quot;tooltipTitle&quot;>" + d.name + "</h4><h5 id=&quot;tooltipText&quot;>" 
+                .html("<div id='tooltipTitle'>" + d.name + "</div><div id='tooltipText'>" 
                         + "Publisher: " + d.publisher + "<br/>"
                         + "Platform: " + d.platform + "<br/>"
                         + "Genre: " + d.genre + "<br/>"
                         + d3.format("(.3s")(d["sales" + region])+ " " + region +" Sales<br/>"
-                        + d3.format("(.3s")(d["salesTotal"])+ " " + " Global Sales</h5>")
+                        + d3.format("(.3s")(d["salesTotal"])+ " " + " Global Sales</div>")
                 .style("left", mouse[0] - 210 + "px")
                 .style("top", mouse[1] - 120 + "px");
         })
@@ -502,51 +503,6 @@ function drawRegionBars(region) {
 function changeTheme() {
     // console.log("It's alive!!!");
     themeID = document.querySelector('#themeSelect').value;
-    if ( themeID == "Classic") {
-        console.log("Classic Theme Selected.");
-        document.getElementById("body").style.backgroundImage = "url('VG-BG-2.jpg')";
-        document.getElementById("mainTitle").style.fontFamily = "'Press Start 2P', cursive";
-        document.getElementById("mainTitle").style.letterSpacing = "normal";
-        document.getElementById("mainTitle").style.fontSize = "32px";
-        document.getElementById("mainTitle").style.margin = "5px";
-        document.getElementById("mainTitle").style.marginTop = "20px";
-        document.getElementById("subtitle").style.fontFamily = "'Roboto', sans-serif";
-        document.getElementById("subtitle").style.fontSize = "18px";
-        document.getElementById("subtitle").style.fontStyle = "italic";
-        document.getElementById("subtitle").style.margin = "0px";
-        document.getElementById("credits").style.fontFamily = "'Roboto', sans-serif";
-        document.getElementById("credits").style.fontSize = "12px";
-        document.getElementById("credits").style.margin = "5px";
-
-        document.getElementById("tooltipTitle").style.fontFamily = "'Press Start 2P', cursivee";
-        // font-family: 'Press Start 2P', cursive;
-        // font-family: 'Roboto', sans-serif;
-    }
-    if ( themeID == "Fantasy") {
-        console.log("Fantasy Theme Selected.");
-        document.getElementById("body").style.backgroundImage = "url('fantasyparchment2.jpg')";
-        document.getElementById("mainTitle").style.fontFamily = "'UnifrakturMaguntia', cursive";
-        // document.getElementById("mainTitle").style.letterSpacing = "8px";
-        document.getElementById("mainTitle").style.fontSize = "55px";
-        document.getElementById("mainTitle").style.margin = "0px";
-
-        document.getElementById("subtitle").style.fontFamily = "'Merienda One', cursive";
-        document.getElementById("subtitle").style.fontSize = "18px";
-        document.getElementById("subtitle").style.fontStyle = "normal";
-        document.getElementById("subtitle").style.margin = "0px";
-
-        document.getElementById("credits").style.fontFamily = "'Merienda One', cursive";
-        document.getElementById("credits").style.fontSize = "12px";
-        document.getElementById("credits").style.fontStyle = "normal";
-
-        document.getElementById("tooltipTitle").style.fontFamily = "'UnifrakturMaguntia', cursive";
-        // font-family: 'Merienda One', cursive;
-        // font-family: 'UnifrakturMaguntia', cursive;
-    }
-    
-    
+    d3.select("body").attr("class", themeID);
     // font-family: 'Sigmar One', cursive;
-
-    // font-family: 'Orbitron', sans-serif;
-    // font-family: 'Righteous', cursive;
 }
