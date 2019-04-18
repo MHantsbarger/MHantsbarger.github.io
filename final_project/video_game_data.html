@@ -5,22 +5,17 @@
         <title>Video Game Sales Visualization</title>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <link rel="stylesheet" href="style.css"/> 
-        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Merienda+One|UnifrakturMaguntia|Orbitron|Righteous" rel="stylesheet">
-
-        <!-- press start and roboto for old school -->
-        <!-- pixel cowboy and yoster island for pixel -->
-
-        <!-- belwe font for fantasy theme -->
-        <!-- orbitron for sci fi theme -->
+        <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Roboto|Merienda+One|UnifrakturMaguntia|Orbitron|Righteous|Sigmar+One|Uncial+Antiqua|Metamorphous" rel="stylesheet">
+        <link href="" rel="stylesheet">
     </head>
     <body id="body">
         <svg>
             <rect class ="framerect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.9"/>
             <rect class ="sidebarrect" fill="white" stroke-width="1" stroke="black" fill-opacity="0.5"/>
-            <rect class ="colorkeyrect" x="115px" y="353px" width="16px" height="16px" fill="red" stroke-width="1" stroke="grey"/>
-            <rect class ="colorkeyrect" x="174px" y="375px" width="16px" height="16px" fill="blue" stroke-width="1" stroke="grey"/>
-            <rect class ="colorkeyrect" x="120px" y="397px" width="16px" height="16px" fill="orange" stroke-width="1" stroke="grey"/>
-            <rect class ="colorkeyrect" x="184px" y="419px" width="16px" height="16px" fill="green" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="45px" y="353px" width="16px" height="16px" fill="red" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="45px" y="375px" width="16px" height="16px" fill="blue" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="45px" y="397px" width="16px" height="16px" fill="orange" stroke-width="1" stroke="grey"/>
+            <rect class ="colorkeyrect" x="45px" y="419px" width="16px" height="16px" fill="green" stroke-width="1" stroke="grey"/>
             <!-- <rect x="5px" y="620px" width="98%" height="300px" fill="white" stroke-width="1" stroke="black"/> -->
             <!-- <rect x="300px" y="120px" width="98%" height="460px" fill="white" stroke-width="1" stroke="black"/> -->
             <g id="yAxis" transform="translate(340,0)"></g>
@@ -68,12 +63,12 @@
             </select><br>
             Regions: <br>
             <!-- <span style="width:16px;height:16px;background-color:red;">&nbsp;&nbsp;&nbsp;&nbsp;</span> -->
-                <input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
-                <input type="checkbox" id="naToggle" name="NorthAmericaSelect" checked>North America</option><br>
-                <input type="checkbox" id="euToggle" name="EuropeSelect" checked>Europe</option><br>
-                <input type="checkbox" id="otherToggle" name="OtherSelect" checked>Everywhere Else</option><br>
-            Min rank: <input type="number" id ="rankmin" name="MinRank" value="1" min="1" max="16600"><br>
-            Show <input type="number" id ="numdisp" name="DisplayNum" value="50" min="1" max="100" style="width:50px"> Results (max 100)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="jpnToggle" name="JapanSelect" checked>Japan</option><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="naToggle" name="NorthAmericaSelect" checked>North America</option><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="euToggle" name="EuropeSelect" checked>Europe</option><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" id="otherToggle" name="OtherSelect" checked>Everywhere Else</option><br>
+            <!-- Start at rank: <input type="number" id ="rankmin" name="MinRank" value="1" min="1" max="16600" style="width:30px"><br> -->
+            Show <input type="number" id ="numdisp" name="DisplayNum" value="50" min="1" max="200" style="width:40px"> (max 200)<br>
             <button type="button" onclick="update()">Show Data</button><br>
         </p>
         <!--Can search for information regarding each game or publisher (maybe wikipedia links?)<br/>

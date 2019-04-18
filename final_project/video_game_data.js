@@ -4,19 +4,17 @@ var realConsoleMap;
 var globalData; //whole dataset
 var filteredData; //filtered dataset for graph
 var graphDimensions;
-var rankMin = document.querySelector('#rankmin').value;
-// var rankMax = document.querySelector('#rankmax').value;
+// var rankMin = document.querySelector('#rankmin').value;
 var numDisp = document.querySelector('#numdisp').value;
 var numDispPrev = numDisp;
-// var barRange = parseInt(rankMax) - parseInt(rankMin) +1;
-// var barRangePrev = barRange;
+
 var xScale;
 var xScaleOld;
 var yScale;
 var yScaleOld;
 var maxYval;
-var themeID = "Classic";
-d3.select("body").attr("class", "Classic");
+var themeID;
+changeTheme();
 
 // data obtained from https://www.kaggle.com/gregorut/videogamesales#vgsales.csv
 d3.queue() //load and handle data
@@ -195,25 +193,15 @@ function update() {
     graphDimensions = updateFrameDimensions();
     filteredData = globalData;
     
-    //setting up rank values
-    rankMin = document.querySelector('#rankmin').value;
-    // rankMax = document.querySelector('#rankmax').value;
-    // barRangePrev = barRange; //holds previous rank for animation transition
-    if (numDisp > 100) { // only shows 100 bars at a time
-        numDisp = 100;
+    // rankMin = document.querySelector('#rankmin').value;
+    numDispPrev = numDisp; //holds previous rank for animation transition
+    numDisp = document.querySelector('#numdisp').value;
+    if (numDisp > 200) { // only shows 200 bars at a time
+        numDisp = 200;
     }
     else if (numDisp < 1) {
         numDisp = 1;
     }
-    numDispPrev = numDisp;
-    numDisp = document.querySelector('#numdisp').value;
-    // barRange = parseInt(rankMax) - parseInt(rankMin) + 1;
-
-    // if (barRange > 100) { // only shows 500 bars at a time
-    //     barRange = 100;
-    //     rankMax =  parseInt(barRange) + parseInt(rankMin) - 1;
-    // }
-    
 
     //filtering data functions
     filteredData = filterYear(document.querySelector('#yearmin').value,document.querySelector('#yearmax').value);
@@ -366,7 +354,6 @@ function filterRank() {
 
     var rankData = sortedData.filter(function(d,i){
         return i < parseInt(numDisp);
-        // return  i >= parseInt(rankMin)-1 && i <= parseInt(rankMax)-1;
     });
     return rankData;
 }
@@ -504,5 +491,4 @@ function changeTheme() {
     // console.log("It's alive!!!");
     themeID = document.querySelector('#themeSelect').value;
     d3.select("body").attr("class", themeID);
-    // font-family: 'Sigmar One', cursive;
 }

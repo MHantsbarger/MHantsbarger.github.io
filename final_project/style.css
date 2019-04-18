@@ -4,24 +4,7 @@ body.Classic { /*html body*/
     background-image: url("VG-BG-2.jpg");
     overflow:hidden;
 }
-body.Fantasy {
-    background-color: #000000;
-    background-image: url("fantasyparchment2.jpg");
-    overflow:hidden;
-}
-body.Scifi {
-    background-color: #000000;
-    background-image: url("VisionLightsBackground.jpg");
-    /* background-image: url("Spaaaace.png"); */
-    
-    overflow:hidden;
-    height: 150%; 
-    /* background-position: center; */
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-body.Classic #mainTitle { /* title */
+body.Classic #mainTitle { /* title */ /*CLASSIC THEME*/
     font-family: 'Press Start 2P', cursive;
     color: white;
     font-size: 32px;
@@ -30,27 +13,6 @@ body.Classic #mainTitle { /* title */
     margin-top:20px;
     text-align:center;
 }
-body.Fantasy #mainTitle {
-    font-Family: 'UnifrakturMaguntia', cursive;
-    color: white;
-    font-size: 52px;
-    text-shadow: 2px 2px #000000;
-    margin:0px;
-    margin-top:0px;
-    text-align:center;
-}
-body.Scifi #mainTitle {
-    font-family: 'Orbitron', sans-serif;
-    color: white;
-    font-size: 52px;
-    font-weight:bold;
-    text-shadow: 2px 2px #000000;
-    margin:0px;
-    margin-top:0px;
-    text-align:center;
-}
-
-
 body.Classic #subtitle { /*subtitle*/
     font-family: 'Roboto', sans-serif;
     font-style: italic;
@@ -60,25 +22,6 @@ body.Classic #subtitle { /*subtitle*/
     margin:0px;
     text-align:center;
 }
-body.Fantasy #subtitle {
-    font-family: 'Merienda One', cursive;
-    font-style: normal;
-    color: white;
-    font-size: 18px;
-    text-shadow: 2px 2px #000000;
-    margin:0px;
-    text-align:center;
-}
-body.Scifi #subtitle {
-    font-family: 'Righteous', cursive;
-    font-style: normal;
-    color: white;
-    font-size: 18px;
-    text-shadow: 2px 2px #000000;
-    margin:0px;
-    text-align:center;
-}
-
 body.Classic #credits { /*credits*/
     font-family: 'Roboto', sans-serif;
     color: white;
@@ -87,23 +30,6 @@ body.Classic #credits { /*credits*/
     margin:5px;
     text-align:center;
 }
-body.Fantasy #credits {
-    font-family: 'Merienda One', cursive;
-    color: white;
-    font-size: 12px;
-    text-shadow: 2px 2px #000000;
-    margin:5px;
-    text-align:center;
-}
-body.Scifi #credits {
-    font-family: 'Righteous', cursive;
-    color: white;
-    font-size: 12px;
-    text-shadow: 2px 2px #000000;
-    margin:5px;
-    text-align:center;
-}
-
 body.Classic #sideBar { 
     font-family: 'Roboto', sans-serif;
     position: absolute;
@@ -115,16 +41,118 @@ body.Classic #sideBar {
     left:40px;
     width: 250px;
 }
+body.Classic #tooltipTitle { /*tooltip title*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: bolder;
+    font-size: 18px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+body.Classic #tooltipText { /*tooltip text*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+    margin:0px;
+    text-align:center;
+}
+
+body.Fantasy { /*FANTASY THEME*/
+    background-color: #000000;
+    background-image: url("fantasyparchment2.jpg");
+    overflow:hidden;
+}
+body.Fantasy #mainTitle {
+    font-Family: 'Uncial Antiqua', cursive;
+    color: white;
+    font-size: 52px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+body.Fantasy #subtitle {
+    font-family: 'Metamorphous', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+body.Fantasy #credits {
+    font-family: 'Metamorphous', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
+}
 body.Fantasy #sideBar { 
-    font-family: 'Merienda One', cursive;
+    font-family: 'Metamorphous', cursive;
     position: absolute;
-    font-size: 15px;
+    font-size: 17px;
     margin:3px;
     margin-left:3px;
     line-height: 22px;
     top:140px;
     left:40px;
     width: 250px;
+}
+body.Fantasy #tooltipTitle {
+    font-family: 'Metamorphous', cursive;
+    font-weight: bold;
+    font-size: 16px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+body.Fantasy #tooltipText {
+    font-family: 'Metamorphous', cursive;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    margin:0px;
+    text-align:center;
+}
+
+body.Scifi { /*SCIFI THEME*/
+    background-color: #000000;
+    background-image: url("VisionLightsBackground.jpg");
+    /* background-image: url("space.jpg"); */
+    
+    overflow:hidden;
+    height: 150%; 
+    /* background-position: center; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+body.Scifi #mainTitle {
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 52px;
+    font-weight:bold;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+body.Scifi #subtitle {
+    font-family: 'Righteous', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+body.Scifi #credits {
+    font-family: 'Righteous', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
 }
 body.Scifi #sideBar { 
     font-family: 'Righteous', cursive;
@@ -137,46 +165,12 @@ body.Scifi #sideBar {
     left:40px;
     width: 250px;
 }
-
-
-body.Classic #tooltipTitle { /*tooltip title*/
-    font-family: 'Roboto', sans-serif;
-    font-weight: bolder;
-    font-size: 18px;
-    margin:1px;
-    margin-left:5px;
-    text-align:center;
-}
-body.Fantasy #tooltipTitle {
-    font-family: 'Merienda One', cursive;
-    font-weight: bold;
-    font-size: 16px;
-    margin:1px;
-    margin-left:5px;
-    text-align:center;
-}
 body.Scifi #tooltipTitle {
     font-family: 'Righteous', cursive;
     font-weight: bold;
     font-size: 16px;
     margin:1px;
     margin-left:5px;
-    text-align:center;
-}
-
-body.Classic #tooltipText { /*tooltip text*/
-    font-family: 'Roboto', sans-serif;
-    font-weight: normal;
-    font-size: 16px;
-    margin:0px;
-    text-align:center;
-}
-body.Fantasy #tooltipText {
-    font-family: 'Merienda One', cursive;
-    font-weight: normal;
-    font-style: normal;
-    font-size: 14px;
-    margin:0px;
     text-align:center;
 }
 body.Scifi #tooltipText {
@@ -187,6 +181,127 @@ body.Scifi #tooltipText {
     margin:0px;
     text-align:center;
 }
+
+body.Doom { /*DOOM THEME*/
+    background-color: #000000;
+    /* background-image: url("VisionLightsBackground.jpg"); */
+    overflow:hidden;
+}
+body.Doom #mainTitle {
+    font-Family: 'UnifrakturMaguntia', cursive;
+    color: white;
+    font-size: 52px;
+    font-weight:bold;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+body.Doom #subtitle {
+    font-family: 'Merienda One', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+body.Doom #credits {
+    font-family: 'Merienda One', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
+}
+body.Doom #sideBar { 
+    font-family: 'Merienda One', cursive;
+    position: absolute;
+    font-size: 15px;
+    margin:3px;
+    margin-left:3px;
+    line-height: 22px;
+    top:140px;
+    left:40px;
+    width: 250px;
+}
+body.Doom #tooltipTitle {
+    font-family: 'Merienda One', cursive;
+    font-weight: bold;
+    font-size: 16px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+body.Doom #tooltipText {
+    font-family: 'Merienda One', cursive;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    margin:0px;
+    text-align:center;
+}
+
+body.Bright { /*BRIGHT THEME*/
+    background-color: #000000;
+    /* background-image: url("VisionLightsBackground.jpg"); */
+    overflow:hidden;
+}
+body.Bright #mainTitle {
+    font-Family: 'UnifrakturMaguntia', cursive;
+    color: white;
+    font-size: 52px;
+    font-weight:bold;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    margin-top:0px;
+    text-align:center;
+}
+body.Bright #subtitle {
+    font-family: 'Merienda One', cursive;
+    font-style: normal;
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px #000000;
+    margin:0px;
+    text-align:center;
+}
+body.Bright #credits {
+    font-family: 'Merienda One', cursive;
+    color: white;
+    font-size: 12px;
+    text-shadow: 2px 2px #000000;
+    margin:5px;
+    text-align:center;
+}
+body.Bright #sideBar { 
+    font-family: 'Merienda One', cursive;
+    position: absolute;
+    font-size: 15px;
+    margin:3px;
+    margin-left:3px;
+    line-height: 22px;
+    top:140px;
+    left:40px;
+    width: 250px;
+}
+body.Bright #tooltipTitle {
+    font-family: 'Merienda One', cursive;
+    font-weight: bold;
+    font-size: 16px;
+    margin:1px;
+    margin-left:5px;
+    text-align:center;
+}
+body.Bright #tooltipText {
+    font-family: 'Merienda One', cursive;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 14px;
+    margin:0px;
+    text-align:center;
+}
+
 
 #tooltip { /*tooltip box properties*/
     width:200px;
