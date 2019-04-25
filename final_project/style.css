@@ -115,6 +115,26 @@ body.Fantasy #tooltipText {
     margin:0px;
     text-align:center;
 }
+body.Fantasy #framerect {
+    fill: peachpuff;
+    stroke-width: 1px;
+    stroke: brown;
+    fill-opacity:0.6;
+}
+body.Fantasy #sidebarrect {
+    fill: peachpuff;
+    stroke-width: 1px;
+    stroke: brown;
+    fill-opacity:0.6;
+}
+body.Fantasy #tooltip { /*tooltip box properties*/
+    width:200px;
+    fill-opacity: 0.95;
+    border: 1px solid brown;
+    background-color: rgb(255, 218, 185,0.9);
+    display: none;
+    position: absolute;
+}
 
 body.Scifi { /*SCIFI THEME*/
     background-color: #000000;
@@ -217,6 +237,7 @@ body.Doom #credits {
 body.Doom #sideBar { 
     font-family: 'Merienda One', cursive;
     position: absolute;
+    color: white;
     font-size: 15px;
     margin:3px;
     margin-left:3px;
@@ -228,6 +249,7 @@ body.Doom #sideBar {
 body.Doom #tooltipTitle {
     font-family: 'Merienda One', cursive;
     font-weight: bold;
+    color: white;
     font-size: 16px;
     margin:1px;
     margin-left:5px;
@@ -237,16 +259,42 @@ body.Doom #tooltipText {
     font-family: 'Merienda One', cursive;
     font-weight: normal;
     font-style: normal;
+    color: white;
     font-size: 14px;
     margin:0px;
     text-align:center;
 }
-/* body.Doom #framerect {
+body.Doom #framerect {
     fill: black;
     stroke-width: 1px;
     stroke: grey;
     fill-opacity:0.5;
-} */
+}
+body.Doom #sidebarrect {
+    fill: black;
+    stroke-width: 1px;
+    stroke: grey;
+    fill-opacity:0.5;
+}
+body.Doom #tooltip { /*tooltip box properties*/
+    width:200px;
+    fill-opacity: 0.95;
+    border: 1px solid grey;
+    background-color: rgba(0,0,0,0.90);
+    display: none;
+    position: absolute;
+}
+body.Doom #yAxis line{
+    stroke: white;
+}
+  
+body.Doom #yAxis path{
+    stroke: white;
+}
+  
+body.Doom #yAxis text{
+    fill: white;
+}
 
 body.Bright { /*BRIGHT THEME*/
     background-color: #000000;
@@ -307,7 +355,6 @@ body.Bright #tooltipText {
     margin:0px;
     text-align:center;
 }
-
 
 #tooltip { /*tooltip box properties*/
     width:200px;
